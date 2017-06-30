@@ -1,0 +1,1143 @@
+\documentclass[review,3p,authoryear]{elsarticle}
+
+\usepackage[english]{babel} %language
+
+\usepackage{amsmath,amssymb}% for math
+
+\usepackage{rotating} % to rotate tables
+\usepackage{multirow} % to have multiple rows in tables
+
+\usepackage[colorlinks=true,linkcolor=black, citecolor=blue]{hyperref} %for hyperlinks
+
+\usepackage{appendix} %to be able to end appendices
+
+\usepackage{setspace} %to doublespace references
+
+\bibliographystyle{apa}
+
+\usepackage{lineno} %line numbers
+
+\begin{document}
+
+\linenumbers
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Fitness-valley crossing with generalized parent-offspring transmission}
+\author[ubc]{M.M.~Osmond\corref{cor1}}
+\ead{mmosmond@zoology.ubc.ca}
+\author[ubc]{S.P.~Otto}
+\ead{otto@zoology.ubc.ca}
+\cortext[cor1]{Corresponding author}
+\address[ubc]{Department of Zoology, University of British Columbia, Vancouver, British Columbia V6T 1Z4, Canada}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Simple and ubiquitous gene interactions create rugged fitness landscapes composed of coadapted gene complexes separated by ``valleys" of low fitness.
+Crossing such fitness valleys allows a population to escape suboptimal local fitness peaks to become better adapted.
+This is the premise of Sewall Wright's shifting balance process.
+Here we generalize the theory of fitness-valley crossing in the two-locus, bi-allelic case by allowing bias in parent-offspring transmission.
+This generalization extends the existing mathematical framework to genetic systems with segregation distortion and uniparental inheritance.
+Our results are also flexible enough to provide insight into shifts between alternate stable states in cultural systems with ``transmission valleys". 
+Using a semi-deterministic analysis and a stochastic diffusion approximation, we focus on the limiting step in valley crossing: the first appearance of the genotype on the new fitness peak whose lineage will eventually fix.We then apply our results to specific cases of segregation distortion, uniparental inheritance, and cultural transmission.
+Segregation distortion favouring mutant alleles facilitates crossing most when recombination and mutation are rare, i.e., scenarios where crossing is otherwise unlikely. 
+Interactions with more mutable genes (e.g., uniparental inherited cytoplasmic elements) substantially reduce crossing times. 
+Despite component traits being passed on poorly in the previous cultural background, small advantages in the transmission of a  new combination of cultural traits can greatly facilitate a cultural transition.
+While peak shifts are unlikely under many of the common assumptions of population genetic theory, relaxing some of these assumptions can promote fitness-valley crossing.
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{keyword}
+cultural evolution \sep cytonuclear inheritance \sep meiotic drive \sep peak shift \sep population genetics \sep valley crossing
+\end{keyword}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%general area
+Epistasis and underdominance create rugged fitness landscapes on which adaptation may require a population to acquire multiple, individually-deleterious mutations that are collectively advantageous.
+Using the adaptive landscape metaphor, we say the population faces a fitness ``valley" \citep{Wright1932}.
+Such valleys appear to be common in nature (\citealp{Weinreich2005a,Szendro2013}, but see \citealp{Carneiro2010}) and affect, among other things, speciation by reproductive isolation, the evolution of sex, the evolvability of populations, and the predictability of evolution \citep{Szendro2013}.
+Here we are interested in the speed and likelihood of fitness-valley crossing, which we determine by examining the first appearance of an individual with the collectively advantageous set of mutations whose lineage will eventually spread to fixation.
+
+Believing epistasis to be ubiquitous, Sewall Wright (\citeyear{Wright1931,Wright1932}) formulated his ``shifting balance theory", which describes evolution as a series of fitness-valley crossings.
+In phase one of the shifting balance process, small, partially-isolated subpopulations (demes) descend into fitness valleys by genetic drift.
+The new mutations are selected against when rare, as they will tend to occur alone as single deleterious alleles.
+Eventually drift may allow the deleterious mutations to reach appreciable frequencies in at least one deme. 
+Once multiple synergistically-acting mutations arise together, they begin to be locally favoured by selection.
+In phase two, these favoured combinations of mutations sweep to fixation, and those demes ascend the new ``fitness peak". 
+Finally, in phase three, the demes that reach the new fitness peak send out migrants whose genes invade and fix in the remaining demes, eventually ``pulling" the entire population up to the new fitness peak.
+Our focus here is in the first appearance of a genotype on the new fitness peak whose lineage will eventually fix, considering a single isolated deme.
+This is typically the longest stage of phases one and two \citep{Stephan1996} and hence is likely the limiting step in fitness-valley crossing.
+
+%currently-held views
+Fitness-valley crossing has been investigated in a large number of theoretical studies.
+In the context of multiple loci with reciprocal sign epistasis, the first appearance of the genotype with the best combination of alleles has been the focus of a few studies \citep{Phillips1996,Christiansen1998,Hadany2003,Hadany2004,Weissman2009,Weissman2010}.
+Many authors have gone on to examine the remainder of phases one and two \citep{Crow1965,Eshel1970,Karlin1971,Kimura1985,Barton1987,Kimura1990,Phillips1996,Michalakis1996,Stephan1996,Weinreich2005,Weissman2009,Weissman2010}, as well as phase three \citep{Kimura1990,Crow1990,Barton1992,Kondrashov1992,Phillips1993,Gavrilets1996,Hadany2003,Hadany2004}.
+Similar attention has been given to situations with a single underdominant locus \citep{Slatkin1981,Gillespie1984a,Barton1993,Peck1998a} or a quantitative trait \citep{Lande1985c,Barton1987,Rouhani1987,Rouhani1987a,Charlesworth1988,Barton1993}.
+The theoretical and empirical support for Wright's shifting balance process has been summarized and debated  \citep{Coyne1997,Wade1998,Coyne2000,Whitlock2000,Coyne2000,Goodnight2000,Goodnight2013}, and the general consensus appears to be that, unless the valley is shallow (weakly deleterious intermediates),  crossing a fitness valley is unlikely.
+
+%what we don't know (specific)
+Despite the abundance of literature on fitness-valley crossing, the above studies all assume perfect Mendelian inheritance.
+The question therefore remains: how robust are our ideas of fitness-valley crossing to deviations from Mendelian inheritance?
+Specifically, how does transmission bias (e.g., meiotic drive or uniparental inheritance) affect the speed and likelihood of valley crossing?
+Departing from strict Mendelian inheritance also allows us to consider the idea of valley crossing in cultures, considering the spread of memes \citep{Dawkins1976} rather than genes.
+This simultaneously adds a level of complexity to current mathematical models of cultural transmission, which typically consider only one cultural trait at a time (e.g., \citealp{CavalliSforza1981}; but see, e.g.,  \citealp{Ihara2004,Creanza2012}).
+
+%hypotheses
+Transmission bias in the form of segregation distortion is likely to have a large effect on valley crossing, as distortion represents a second level of selection \citep{Sandler1957,Hartl1970}.
+Insight into how segregation distortion affects valley crossing comes from models of underdominant chromosomal rearrangements (mathematically equivalent to models with \textit{one} diploid biallelic locus), which often find meiotic drive to be a mechanism allowing fixation of a new mutant homokaryotype \citep{Bengtsson1976,Hedrick1981,Walsh1982}.
+Populations that have fixed alternate homokaryotypes produce heterokaryotype hybrids, which have low viability and/or fertility; thus gene flow between these populations is reduced.
+Segregation distortion is therefore thought to be a mechanism that promotes rapid speciation \citep[stasipatric speciation;][]{White1978}.
+Although the role of underdominance in chromosomal speciation has recently been questioned \citep[reveiwed in][]{Rieseberg2001,Hoffmann2008c,Faria2010,Kirkpatrick2010}, it is hypothesized to be relevant in annual plants \citep{Hoffmann2008c} and appears to play a dominant role in maintaining reproductive isolation in sunflowers \citep{Lai2005} and monkey flowers \citep{Stathos2014}.
+
+Another common form of transmission bias is sex specific, with the extreme case being uniparental inheritance.
+In genetic transmission, strict uniparental inheritance is common for organelle genomes, such as the mitochondria, which is typically inherited from the mother.
+Uniparental inheritance will tend to imply further asymmetries.
+For instance, the mutation rate of mitochondrial genes is estimated to be two orders of magnitude larger than the mutation rate of nuclear genes in many animals \citep[e.g.,][]{Linnane1989}.
+Higher mutation rates will likely facilitate crossing.
+That said, higher mutation rates in only one gene may have limited effect because the production of double mutants by recombination will be constrained by the availability of the rarer single mutant.
+Previous models of fitness-valley crossing have tended to ignore asymmetries \citep[but see Appendix C of][]{Weissman2010}.
+ 
+ Transmission bias is an integral characteristic of cultural transmission, where it is referred to as ``cultural selection" \citep{CavalliSforza1981,Boyd1985}.
+However, to the best of our knowledge, no attempts have been made to examine the evolution of cultural traits (memes) in the presence of a ``fitness" valley.
+\cite{Boyd2001} reviews the genetic theory of the shifting balance, and notes that it could be applied to culture, but no explicit cultural models were presented.
+Meanwhile, instances such as the so-called ``demographic transition" in $19^{th}$ century western Europe, where societies transitioned from less educated, large families to more educated, small families \citep{Mulder1998}, suggest that alternate combinations of cultural traits (e.g., `value of education' and `family-size preference') can be stable and that peak shifts may occur in cultural evolution.
+In fact, alternate stable cultural states may be pervasive \citep{Boyd2010}, as alluded to by the common saying that people are ``stuck in their ways."
+Paradigm shifts in the history of science \citep{Kuhn1962} may provide further examples \citep{Fog1999}.
+Cultural peak shifts can also be relatively trivial; for instance, changing the unit of time from seconds, minutes, and hours to a decimal system is only advantageous if we also change units that are based on seconds, such as the joule and volt \citep{Fog1999}.     
+
+%experimental approach
+Here we focus on a population genetic model with two bi-allelic loci under haploid selection in a randomly-mating, finite population.
+This model can easily be reduced to a single-locus model with two alleles and diploid selection, which is formally equivalent to a model of chromosomal rearrangements (e.g., a chromosome has an inversion or not).
+Interpreting genes as memes produces a model of vertically-transmitted cultural evolution.
+Our model incorporates both transmission bias and asymmetries in mutation and initial numbers of single mutants.
+We first give a rough semi-deterministic sketch to develop some intuition, then follow with a stochastic analysis using a diffusion approximation.
+Our analysis corresponds to the stochastic simultaneous fixation regime of \cite{Weinreich2005}, and the neutral stochastic tunnelling and deleterious tunnelling regimes of \cite{Weissman2010}, where the appearance of the new, favourable, and eventually successful ``double mutant" occurs before the fixation of the neutral or deleterious ``single mutants". 
+Finally, we apply our results to the specific cases of segregation distortion, uniparental inheritance, and cultural transmission.
+
+%important finding
+We derive the expected time until the appearance of a double mutant whose lineage will fix when single mutants are continuously generated by mutation from residents (the stochastic model assumes neutral single mutants).
+We also use the stochastic model to derive the probability that a double mutant appears and fixes given an initial stock of deleterious single mutants that is not replenished by mutation.
+Given typical per-locus mutation rates, valley crossing is generally found to be a slow and unlikely outcome under fair Mendelian transmission, even when single mutants are selectively neutral.
+Segregation distortion, in favour of wild-type or mutant alleles, affects crossing most when recombination and mutation are rare, the scenarios where crossing is otherwise unlikely.
+Cytonuclear inheritance allows increased mutational asymmetries between the two loci; higher mutation rates lead to more single mutants and hence faster valley crossing, but, when holding the average mutation rate constant, asymmetries hinder crossing by reducing the probability that the single mutants recombine to produce double mutants. 
+Finally, we show that, when new cultural ideas or practices are not too poorly transmitted when arising individually within the previous cultural background, a transmission advantage of the new combination greatly facilitates cultural transitions. 
+
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model and Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Consider two loci, $\mathbf{A}$ and $\mathbf{B}$, 
+with $x_{ij}$ the current frequency of genotype $A_iB_j$, where $i,j\in\{1,2,...,p\}$ are the alleles carried by the individual.
+When an $A_iB_j$ individual mates with an $A_kB_l$ individual, they produce an $A_mB_n$ offspring with probability $b_{ij}^{kl}(mn)$.
+Summing over all possible offspring types, $\sum_{m,n=1}^p b_{ij}^{kl}(mn) =1$.
+We can specify that the bottom index (here $ij$) denotes the genotype of the mother, while the top index (here $kl$) denotes the genotype of the father.
+As a consequence, transmission biases according to parental sex [$b_{ij}^{kl}(mn)\neq b_{kl}^{ij}(mn)$] are allowed.
+When considering sex-biased transmission we assume the frequencies $x_{ij}$ are the same in females and males (i.e., no sex linkage and no sex-based differences in selection), which is automatically the case in hermaphrodites.
+
+Random mating and offspring production is followed by haploid viability selection, which occurs immediately before censusing.
+The population size, $N$, is constant and discrete, and generations are non-overlapping.
+Then the expected frequency of $A_mB_n$ in the next generation, $x'_{mn}$, solves
+\begin{equation}\label{xprime}
+V x'_{mn} = w_{mn} \sum_{i,j,k,l=1}^{p} x_{ij}\; x_{kl}\; b_{ij}^{kl}(mn),
+\end{equation}
+where $w_{mn}\geq0$ is the relative viability of $A_mB_n$ and $V$ is the sum of the right hand side of Equation \eqref{xprime} over all genotypes, which keeps the frequencies summed to one.
+
+Denote the probability that a mating between an $A_iB_j$ mother and an $A_kB_l$ father produces an $A_mB_n$ offspring that survives one round of viability selection by $b_{ij}^{kl}(mn)^* = w_{mn} b_{ij}^{kl}(mn)$, where the asterisk indicates ``after selection". 
+And let the average probability that a mating produces $A_mB_n$, regardless of which parent was which, be $\bar{b}_{ij}^{kl}(mn)^* = \frac{1}{2} w_{mn} [b_{ij}^{kl}(mn) + b_{kl}^{ij}(mn)]$.
+Then (as we will see below) selection on $A_iB_j$ in a population of ``residents" ($A_1B_1$) is described by $s_{ij} = 2\bar{b}_{11}^{ij}(ij)^* - 1$.
+Letting $w_{ij} = 1 + d_{ij} > 0$ describe viability selection and $2\bar{b}_{11}^{ij}(ij) = 1 + k_{ij}$ describe transmission bias ($-1 \leq k_{ij} \leq 1$), then $s_{ij}=(1+d_{ij})(1+k_{ij})-1$.
+Here we define the relative fitness of genotype $A_iB_j$ as $1+s_{ij}$, which is determined by both viability and transmission.
+Thus defined, fitness is a measure of the ``transmissibility" of a genotype as it includes several processes (e.g., viability, meiotic drive, recombination, mutation) that affect the number of offspring of a given genotype produced by a parent of that genotype.
+We will see that it is transmissibility that determines the dynamics of valley crossing.
+
+Without mutation or recombination, fair transmission implies $k_{ij}=0$, or $\bar{b}_{11}^{ij}(ij)=1/2 \; \forall \; i\neq1, j\neq1$. 
+In words, with fair transmission we expect half of all offspring from matings between $A_1B_1$ and $A_iB_j$ to be of parental type $A_iB_j$.
+Sex-based inheritance is expected to arise in the form of $b_{11}^{ij}(ij) = 1 - b_{ij}^{11}(ij)$ [e.g., maternal inheritance implies $b_{11}^{ij}(ij) = 1$ and $b_{ij}^{11}(ij) = 0$], which does not directly impose selection as $k_{ij}=0$.
+Segregation distortion can, however, impose selection.
+For example, ignoring mutations, if the $A_2$ allele is more likely to be transmitted than the $A_1$ allele (in a $B_1$ background) we would have $\bar{b}_{11}^{21}(21) > 1/2$, giving $k_{21}>0$.
+Interpreting genes as memes, transmission bias $k_{ij}$ determines the strength of ``cultural selection" \citep[\textit{sensu}][]{CavalliSforza1981} on meme combination $A_iB_j$.
+Previous work on multi-locus peak shifts has assumed that bias does not influence selection ($k_{ij}=0$) and that maternal and paternal types are equally transmitted [$b_{11}^{ij}(ij) = b_{ij}^{11}(ij) = 1/2 \; \forall \; i\neq1, j\neq1$].
+
+Here we focus on bi-allelic loci ($p=2$).
+We are specifically interested in the case where, in a population composed entirely of residents, ``single mutants" ($A_2B_1$ and $A_1B_2$) are selected against while ``double mutants" ($A_2B_2$) are selectively favoured: $s_{21}, s_{12} < 0 < s_{22}$.
+
+%FIGURE \ref{Valley} HERE
+
+Given that the population is composed primarily of residents, with no double mutants as of yet,
+the population faces a fitness valley.
+The valley can be created by differences in viability alone, or it can be created by differences in transmission, or both.
+Here we focus on the limiting step in the peak-shift process, the probability and expected time until a double mutant arises whose lineage will eventually fix.
+Following the lead of \cite{Christiansen1998}, we begin by developing a rough semi-deterministic analysis to gain intuition.
+A stochastic analysis follows.
+Table \ref{Parameters} provides a summary of notation and a supplementary \textit{Mathematica} file gives a more detailed derivation of the results.
+
+TABLE \ref{Parameters} HERE
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Semi-deterministic analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Single mutant dynamics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Selection against single mutants keeps their frequencies ($x_{21}$ and $x_{12}$) small.
+Let these frequencies be proportional to some small number $\epsilon<<1$.
+Let the probability that an offspring inherits an allele that neither parent possesses [i.e., mutation; e.g., $b_{11}^{11}(21)$] be of the same small order $\epsilon$.
+Then, for large $N$, the frequencies of the single mutants in the next generation are 
+\begin{equation}\label{xMprime}
+x'_{ij} \approx \frac{w_{ij}}{V} \Big[b_{11}^{11}(ij) + 2\bar{b}_{11}^{ij}(ij) x_{ij}\Big] + O(\epsilon^2),
+\end{equation}
+where $i\neq j$ and $O(\epsilon^2)$ captures terms of order $\epsilon^2$ and smaller.
+
+We will write $\mu_{ij}^{kl}(mn)^* = \bar{b}_{ij}^{kl}(mn)^*$ when $m \not\in \{i,k\}$ or $n \not\in \{j,l\}$ to highlight the fact that a mutation has occurred.
+Then, ignoring $O(\epsilon^2)$, the frequencies of single mutants, which are initially absent [$x_{ij}(0)=0$], in generation $t$ are
+\begin{equation}\label{xMn}
+x_{ij}(t)\approx\left\{
+     \begin{array}{lr}
+     \mu_{11}^{11}(ij)^*\Big[ (1 + s_{ij})^t - 1\Big] s_{ij}^{-1} & : s_{ij} \neq 0\\
+      \mu_{11}^{11}(ij)^* \; t & : s_{ij} = 0
+     \end{array}
+   \right.
+\end{equation}
+Viability and transmission are thus coupled together (in $s_{ij}$) throughout our results, and it is primarily the total amount of selection on $A_iB_j$ in a population of residents ($s_{ij}$) that determines the dynamics.  
+[As a technical aside, this is not true in the first generation that mutants appear, via $\mu_{ij}^{kl}(mn)^*$, but this is simply because of the order of the life cycle chosen, where these mutants experience viability selection, but not transmission biases, when they first occur.]
+
+Equation \eqref{xMn} assumes the normalizing factor $V$ remains near 1 over the $t$ generations, which is the case when single mutants are rare, as is generally true when single mutants are selected against, $s_{ij}<0 \; \forall \; i\neq j$.
+When $s_{ij}<0$ and there has been a sufficiently long period of selection, $ t  > -1/s_{ij} $, the single mutant frequencies approach mutation-selection balance $x_{ij}(t) \approx - \mu_{11}^{11}(ij)^* / s_{ij}$.
+This assumes the probability of mutation, $\mu_{11}^{11}(ij)^*$, is small relative to the strength of selection, $s_{ij}$.
+We next derive a semi-deterministic solution for the crossing time, $T$, given mutation-selection balance is reached. 
+In Appendix \ref{App:DM} we follow \cite{Christiansen1998} to derive the semi-deterministic crossing time when crossing occurs before mutation-selection balance is reached; this occurs when $-s_{ij}T<<1$, which can only be the case if the valley is shallow, $-s_{ij}<<1$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Waiting time for first successful double mutant}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We now turn to calculating the waiting time until a double mutant that is able to establish first arises.
+Assume the probability two residents mate to produce a double mutant (i.e., a double mutation), $b_{11}^{11}(22)$, is very rare, on the order of $\epsilon^2$.
+Then the expected frequency of double mutants in the next generation before selection, assuming single mutant are rare and there are currently no double mutants $x_{22}=0$, is 
+\begin{equation}\label{xDMprime}
+x'_{22} = \Big[ \mu_{11}^{11}(22) + 2 \mu_{11}^{21}(22) x_{21} + 2 \mu_{11}^{12}(22) x_{12} + 2 r_{21}^{12}(22) x_{21} x_{12} \Big] + O(\epsilon^3),
+\end{equation}
+where we write $r_{21}^{12}(22) = \bar{b}_{21}^{12}(22)$ to highlight the fact that a double mutant has effectively been produced by recombination.
+The expected frequency of double mutants (Equation \ref{xDMprime}) is measured before viability selection to avoid artificially adjusting the double mutant frequency by its viability difference before it appears.
+
+In a truly deterministic model ($N\rightarrow\infty$) double mutants are present at frequency $x_{22}'$ after a single bout of reproduction.
+However, assuming no double mutants have yet appeared, we can use $x_{22}(t)$ as a rough approximation for the probability of a double mutant first arising in generation $t$ \citep{Christiansen1998}.
+Summing $t$ from 0 to $t'$ gives the cumulative probability of observing a double mutant in any of the $t'$ generations. 
+The generation $T'$ at which the cumulative probability reaches $1/N$ can be used as an estimate of the time we expect to wait until the first double mutant has arisen \citep{Christiansen1998}. 
+
+Here we are more interested in the waiting time until the first \textit{successful} double mutant appears (i.e., one whose lineage will eventually fix).
+We therefore want to multiply the probability that a double mutant appears at time $t$, $x_{22}(t)$, by the probability it will fix before taking the sum over $t$.
+Using Kimura's \citeyearpar{Kimura1962} approximation, the probability a double mutant fixes is 
+\begin{equation}\label{uf}
+u_{22}=\frac{1-e^{-2 s_{22}}}{1-e^{-2 N s_{22}}}.
+\end{equation}
+With a weak double mutant advantage, $0<s_{22}<<1$, in a large population, $Ns_{22}>>1$, Equation \eqref{uf} simplifies to the familiar $2s_{22}$ \citep{Haldane1927}.
+
+The selection coefficient $s_{22}$ can be calculated from the number of double mutant offspring a newly arisen double mutant is expected to leave in the next generation, given that the mean number of offspring per individual is one, such that the population size is constant.
+This expectation, $1 + s_{22}$, is the probability of mating with a given type, multiplied by the probability of producing a double mutant offspring, multiplied by the probability of surviving to the next generation, summed over all possible matings
+\begin{equation}\label{s}
+1 + s_{22} = \sum_{i,j=1}^{2} 2\bar{b}_{ij}^{22}(22)^* x_{ij}, 
+\end{equation}  
+where $x_{22} = 0$ in the remaining population (i.e., the double mutant does not mate with itself).
+Without transmission bias, mutation, or recombination, $\bar{b}_{ij}^{22}(22) = 1/2 \; \forall \; i,j$ and Equation \eqref{s} reduces to the familiar $s_{22} = w_{22} - 1$.
+Here we allow bias, mutation, and recombination, and assume single mutants are sufficiently rare, giving $s_{22}\approx 2\bar{b}_{11}^{22}(22)^*-1$.
+This implies that selection on the double mutant (including transmission) is constant over time and that fixation depends only on its dynamics in a population composed almost entirely of residents. 
+With recombination and otherwise fair transmission we have $\bar{b}_{11}^{22}(22) = (1 - r)/2$, where $r$ is the probability of recombination between a double mutant and a resident.
+Writing $w_{22} = 1 + s$ and assuming both $s$ and $r$ are small, recovers the well-known first-order approximation $s_{22} = s - r$ \citep{Crow1965}.
+This expression highlights the fact that recombination can reduce the probability of fixation by breaking up favourable gene combinations \citep{Crow1965}.
+
+When selection is strong and mutation is rare, relative to the strength of genetic drift, the time to fixation is dominated by the time to the arrival of a successful mutant \citep{Gillespie1984a,Weinreich2005,Weissman2010}.
+The waiting time until the first successful double mutant, which we derive below, therefore well approximates the fixation time of a double mutant within a population when double mutants are advantageous but rarely produced, $x_{22}' << 1/N < s_{22}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Crossing time given mutation-selection balance}
+
+When enough time has passed ($t > -1/s_{ij}$) the single-mutant frequencies approach mutation-selection balance (MSB), $x_{ij}(t) \approx -\mu_{11}^{11}(ij)^*/s_{ij}$. 
+Using these frequencies in Equation (\ref{xDMprime}) gives the expected frequency of double mutants in the next generation, which does not change until a double mutant arises, i.e., $x_{22}(t) = x'_{22} \; \forall \;t$.
+Summing $u_{22} x_{22}'$ over $T_{MSB}$ generations, setting equal to $1/N$, and solving for $T_{MSB}$ gives an estimate of the number of generations we expect to wait for a successful double mutant to arise when beginning from mutation-selection balance 
+\begin{align}\label{CTMSB}
+T_{MSB} \approx \frac{1}{u_{22} N} \Big[ 
+&  \Big(1 + \frac{\mu_{11}^{11}(21)^*}{s_{21}} + \frac{\mu_{11}^{11}(12)^*}{s_{12}} \Big)^2 \mu_{11}^{11}(22) \nonumber\\
+& - \Big( 1 + \frac{\mu_{11}^{11}(21)^*}{s_{21}} + \frac{\mu_{11}^{11}(12)^*}{s_{12}} \Big) \Big( \frac{\mu_{11}^{11}(21)^*}{s_{21}} \Big) 2 \mu_{11}^{21}(22) \nonumber\\
+& - \Big( 1 + \frac{\mu_{11}^{11}(21)^*}{s_{21}} + \frac{\mu_{11}^{11}(12)^*}{s_{12}} \Big) \Big( \frac{\mu_{11}^{11}(12)^*}{s_{12}} \Big) 2 \mu_{11}^{12}(22) \nonumber\\
+& + \Big(\frac{\mu_{11}^{11}(21)^*}{s_{21}}\Big)^2 \mu_{21}^{21}(22)^* + \Big(\frac{\mu_{11}^{11}(12)^*}{s_{12}}\Big)^2 \mu_{12}^{12}(22) \nonumber\\
+& + \Big( \frac{\mu_{11}^{11}(21)^*}{s_{21}} \Big) \Big( \frac{\mu_{11}^{11}(12)^*}{s_{12}} \Big) 2 r_{21}^{12}(22) 
+\Big]^{-1}  - 1. 
+\end{align}
+
+In our numerical examples, we will track the waiting time until a successful double mutant arises in a population that has recently established and is fixed for the resident type (e.g., following a bottleneck or a founder event).  
+This time can be approximated by the time that it takes to reach mutation-selection balance, $T_0$, and the establishment time once there
+\begin{equation}\label{MSB}
+T\approx T_0+T_{MSB}.
+\end{equation}
+Here we use $T_0 = \mathrm{max} \{\frac{1}{-s_{21}},\frac{1}{-s_{12}}\}$. 
+As the deleterious single mutants approach neutrality ($s_{ij}\rightarrow0^- \;\forall \; i\neq j$) the waiting time \textit{from} mutation-selection balance, $T_{MSB}$, decreases (because there are more single mutants segregating), but the waiting time \textit{to} mutation-selection balance, $T_0$, increases dramatically because it takes longer to produce the higher segregating frequencies of single mutants. 
+As $-s_{ij}$ becomes small enough such that $T<-1/s_{ij}$ the approximation breaks down and we must use the non-equilibrium solution derived in Appendix \ref{App:DM}.
+
+With symmetric Mendelian assumptions, weak selection on single mutants ($\delta=1-w_{ij} \;\forall \;i\neq j$), rare mutation ($\mu$), and infrequent recombination [such that $u_f\approx 2(s-r)\approx 2s$], the rate of production of successful double mutants from mutation selection balance (Equation \ref{CTMSB}) is 
+\begin{equation}\label{Tweiss}
+{T_{MSB}}^{-1} \approx \frac{2sN\mu^2r}{\delta^2},
+\end{equation}
+aligning with equation 4 in \citeauthor{Weissman2010} \citeyearpar[][see supplementary \textit{Mathematica} file]{Weissman2010}. 
+This result preforms well when ${T_{MSB}}^{-1} < \delta$, or, equivalently, when $\sqrt[3]{2sN\mu^2r} < \delta$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Stochastic analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Markov process}
+
+Fitness-valley crossing is naturally a stochastic process.
+We thus now consider the Wright-Fisher model, where the next generation is formed by choosing $N$ offspring, with replacement, from a multinomial distribution with frequency parameters $x_{ij}'$ (Equation \ref{xprime}).
+Let the number of $A_2B_1$ and $A_1B_2$ single mutants in generation $t$ be $i_t$ and $j_t$, respectively.
+Given that there are currently no double mutants, we have $N-i_t-j_t$ resident individuals and we let $X(t)=(i_t,j_t)$ describe the state of the system in generation $t$.
+Let the expected frequencies in the $t+1$ generation, conditional on $X(t)=(i,j)$, be $x_{kl}'(i,j) = x_{kl}'$, with $x_{22}=0$. 
+The transition probabilities to states without double mutants are then
+\begin{equation}\label{TrPr}
+P_{ij}^{kl}=P\{ X(t+1) = (k,l)\; |\; X(t)=(i,j) \} = \binom{N}{k, l, N-k-l} (x_{21}')^k\; (x_{12}')^l\; (x_{11}')^{N-k-l}.
+\end{equation}
+Note that summing over all $k,l$ $\in \{0,1,...,N\}$ gives $(1-x_{22}')^N$, the probability that no double mutant is sampled.
+Equation \eqref{TrPr} describes a sub-stochastic transition matrix for the Markov process.
+
+Next, let $H$ be the state with any positive number of double mutants. 
+We then have the transition probabilities $P_{ij}^H = 1-(1-x_{22}')^N \approx N x_{22}'$, where the approximation assumes a small expected frequency of double mutants in the next generation, $x_{22}'<<1$.
+To calculate the waiting time until the first \textit{successful} double mutant, we replace $P_{ij}^H$ with $\tilde{P}_{ij}^H = P_{ij}^H u_{22} \approx N x_{22}' u_{22}$, ignoring the segregation of double mutants when lost.
+$H$ is now the state with any positive number of successful double mutants. 
+Dividing each $x_{ij}'$ in Equation \eqref{TrPr} by the probability a double mutant does not arise ($1-x_{22}'$) and multiplying by the probability a double mutant does not arise and fix ($1-x_{22}'u_{22}$) ensures the columns sum to one.
+To complete the transition matrix we make $H$  an absorbing state: $P_H^H=1$ and $P_H^{ij}=0$.
+
+We can describe this process, in part, by the moments for the change in number of single mutants, conditional on the process not being killed by a successful double mutant.
+The $n^{th}$ moment for the change in the number of $A_2B_1$ individuals, $\triangle i = i_{t+1} - i_t$, is
+\begin{equation}\label{Din}
+E[ (\triangle i)^n | i_t = i ] = \sum_{k=0}^{N} (k - i)^n \binom{N}{k} \Big(\frac{x_{21}'}{1-x_{22}'u_{22}}\Big)^k \Big(\frac{x_{12}' + x_{11}'}{1-x_{22}'u_{22}}\Big)^{N-k}.
+\end{equation}
+Similar equations can be computed for the change in the number of $A_1B_2$ individuals, $\triangle j = j_{t+1} - j_t$.
+
+To make analytic progress we use the moment equations to approximate the Markov chain with a diffusion process \citep[][Ch. 15]{Karlin1981book}.
+We do so by taking the large population limit ($N \rightarrow \infty$) while finding the appropriate scalings to ensure finite drift and diffusion terms (Appendix \ref{App:Diffusion}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Crossing time with neutral single mutants}
+
+The diffusion process yields a partial differential equation describing the expected time until a successful double mutant arises given that we begin with $N^\beta y$ individuals of type $A_2B_1$ and $N^\beta z$ individuals of type $A_1B_2$ \citep{Christiansen1998}
+\begin{equation}\label{PDE}
+\frac{1}{2}\sigma_Y^2(y) \frac{\partial^2 \tilde{T}(y,z)}{\partial y^2} + \frac{1}{2}\sigma_Z^2(z) \frac{\partial^2 \tilde{T}(y,z)}{\partial z^2} + \mu_Y(y) \frac{\partial \tilde{T}(y,z)}{\partial y} + \mu_Z(z) \frac{\partial \tilde{T}(y,z)}{\partial z} - \kappa(y,z) \tilde{T}(y,z) = -1,
+\end{equation}
+where $\tilde{T}(y,z)$ refers to time scaled in units of $N^\beta$ generations (parameters defined in Table \ref{Parameters} and Appendix \ref{App:Diffusion}).
+In Appendix \ref{App:StochasticTimes} we solve Equation \eqref{PDE} under the two scenarios explored in \cite{Christiansen1998}: with and without recombination from neutral single mutants to double mutants when the population begins with only residents, but here generalized to allow unequal mutation rates and sex-biased transmission.
+While the neutrality assumption precludes the existence of a fitness valley, it provides a minimum for the expected time to observe a successful double mutant.
+Previous studies have suggested that fitness valleys will only be crossed if single mutants are nearly neutral \citep[e.g.,][]{Walsh1982}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Probability of crossing from standing variation}
+
+The diffusion process can also be used to describe the production of successful double mutants from an initial stock of single mutants (i.e., evolution from standing variation).
+Specifically, assuming that residents don't mutate [$b_{11}^{11}(12) = b_{11}^{11}(21) = b_{11}^{11}(22) = 0$] the process has two absorbing states, fixation of $A_1B_1$ and fixation of $A_2B_2$ (a successful double mutant appears and the process is killed).
+The probability of fixation of residents is the solution, $u(y,z)$, of \citep{Karlin1981book}
+\begin{equation}\label{uPDE}
+\frac{1}{2}\sigma_Y^2(y) \frac{\partial^2 u(y,z)}{\partial y^2} + \frac{1}{2}\sigma_Z^2(z) \frac{\partial^2 u(y,z)}{\partial z^2} + \mu_Y(y) \frac{\partial u(y,z)}{\partial y} + \mu_Z(z) \frac{\partial u(y,z)}{\partial z} - \kappa(y,z) u(y,z) = 0,
+\end{equation}
+with terms defined in Appendix \ref{App:Diffusion}.
+The probability that a successful double mutant arises is therefore $1-u(y,z)$.
+\cite{Karlin1981b} used a similar equation to find the probability of detecting a lethal homozygote in the one locus, diploid case with Mendelian transmission.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Deleterious single mutants without recombination}
+
+With no recombination from single mutants to double mutants [$r_{21}^{12}(22) = 0$] we have scaling parameter $\beta=1/2$.
+Then, with equal selection on single mutants and some mutational symmetry between the two loci (see supplementary \textit{Mathematica} file), the single mutants are equivalent and we can concern ourselves with only their sum $\xi = y + z$. 
+Equation \eqref{uPDE} then collapses to
+\begin{equation}\label{NoRecombDEu}
+\frac{1}{2} \xi \frac{\mathrm{d}^2 u(\xi)}{\mathrm{d} \xi^2} + S_m \xi \frac{\mathrm{d} u(\xi)}{\mathrm{d} \xi} - u_{22} w_{22} \Big[ B_{11}^{m}(22) + B_{m}^{11}(22) \Big] \xi u(\xi) = 0,
+\end{equation}
+where $S_m=s_{21}N^\beta=s_{12}N^\beta$ is scaled selection on single mutants and $B_{11}^{m}(22)+B_{m}^{11}(22)=[b_{11}^{21}(22)=b_{21}^{11}(22)]N^\beta=[b_{11}^{12}(22)=b_{12}^{11}(22)]N^\beta$ is the scaled mutation probability from single mutants to double mutants.
+
+The boundary conditions are $u(0)=1$ and $u(\infty)=0$.
+Solving the boundary value problem gives the probability of a double mutant appearing when starting with $n_0 = i_0 + j_0$ single mutants
+\begin{equation}\label{PCrossNoRecomb}
+1 - u(n_0) = 1 - \exp \Big[ n_0 \big[ -s_m - \sqrt{ s_m^2 + 2u_{22} 2\mu_{11}^{m}(22)^*} \big] \Big],
+\end{equation}
+where $s_m = s_{21}=s_{12}$ is the total strength of selection on each single mutant type.
+Setting $n_0=1$ gives the probability a newly arisen single mutant will begin a lineage which eventually produces a successful double mutant.
+
+%FIGURE \ref{ProbCrossNoRecomb} HERE
+
+Interestingly, Equation \eqref{PCrossNoRecomb} does not depend strongly on population size, $N$.
+Without recombination double mutants are primarily produced by mutations from single mutants, which are rare and hence always mate with one of the large number of residents.
+In other words, the production of $A_2$ and $B_2$ alleles does not rely on the number of residents but only on the dynamics of the rare single mutants.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Deleterious single mutants with recombination}
+
+Finally, we examine the probability of a successful double mutant appearing when there is recombination between deleterious single mutants, $r_{21}^{12}(22) > 0$.
+With sufficiently strong selection against single mutants the single mutant frequencies scale as $c_n y\approx z$ when we begin with initial frequencies $c_n y(0) = z(0)$ and  both single mutants are under the same selection pressure, $S_{21}= S_{12}$. 
+Then, without mutation from residents to single mutants, Equation \eqref{uPDE} collapses to
+\begin{equation}\label{RecombDEu}
+\frac{1}{2 (1 + c_n)} \xi \frac{\mathrm{d}^2 u(\xi)}{\mathrm{d} \xi^2} + S_{21} \xi \frac{\mathrm{d} u(\xi)}{\mathrm{d} \xi} - u_{22} c_n 2r_{21}^{12}(22)^* \xi^2 u(\xi) = 0,
+\end{equation}
+where $\xi = c_n \; y = z$. 
+
+With boundary conditions $u(0) = 1$ and $u(\infty)=0$ the probability of valley crossing is
+\begin{equation}\label{PCrossRecomb}
+1 - u (i_0, N) = 1 - \exp \Big[ -(1+c_n) i_0 s_{21} \Big] \frac{A_i \Big[ \frac{ N (1+c_n)^2 (s_{21})^2 + i_0 2u_{22} c_n(1+c_n) 2r_{21}^{12}(22)^* }{ N^{1/3} [ 2u_{22} c_n (1+c_n) 2r_{21}^{12}(22)^* ]^{2/3} } \Big]}{A_i \Big[ \frac{ N (1+c_n)^2 (s_{21})^2}{N^{1/3}[2u_{22} c_n (1+c_n) 2 r_{21}^{12}(22)^* ]^{2/3} } \Big]},
+\end{equation}
+where $A_i$ is the Airy function.
+Equation \eqref{PCrossRecomb} extends the one-locus diploid result with Mendelian transmission \cite[equation 28 in][]{Karlin1981b} by allowing unequal single mutant frequencies ($c_n\neq 1$) while also incorporating transmission bias, recombination, and double mutant fitness.
+Equation \eqref{PCrossRecomb} well-approximates the Mendelian simulation results of \citeauthor{Michalakis1996} \citeyearpar[][see supplementary \textit{Mathematica} file]{Michalakis1996}.
+
+When $(s_{21})^2$ and $i_0$ are small, we have the first order approximation
+\begin{equation}\label{PCrossRecombApp}
+1 - u(i_0, N) = i_0 \Big[ (1 + c_n) s_{21} + \frac{3^{1/3} \Gamma [2/3]}{\Gamma[1/3]} \bigg(\frac{ 2u_{22} c_n(1+c_n) 2r_{21}^{12}(22)^* }{N} \bigg)^{1/3} \Big],
+\end{equation}
+which is valid only when the term in the large square brackets is positive. 
+Equation \eqref{PCrossRecombApp} can be used to show that when holding the initial number of single mutants, $(1+c_n)i_0$, constant, the probability the double mutant fixes is maximized when there are equal numbers of single mutants, $c_n=1$.
+This is because recombination is most efficient in creating double mutants when single mutants are equally frequent. 
+
+%FIGURE \ref{ProbCrossRecomb} HERE
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Three scenarios}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We next apply our results to three different scenarios: segregation distortion, cytonuclear inheritance, and cultural transmission.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Segregation distortion}
+One form of segregation distortion, found in the heterothallic fungi \textit{Neurospora intermedia}, is autosomal killing \citep{Burt2006}.
+In heterozygotes, the presence of a ``killer" allele results in the death of a proportion of the spores that contain the wild-type (``susceptible") allele, leading to a $(1+k)/2$ frequency of the killing allele at fertilization, $0<k\leq1$.   
+Letting $A_2$ and $B_2$ represent the killing alleles, and, for the sake of exploration, assuming that cells with one killing allele are functionally equivalent to cells with two, the transmission probabilities are shown in Table \ref{Table:Drive}.
+The Mendelian case is given by $k=0$.
+When $-1\leq k<0$ the allele identities are reversed: $A_1$ and $B_1$ are killers and $A_2$ and $B_2$ are susceptibles.
+
+INSERT TABLE \ref{Table:Drive} HERE
+
+Since segregation distortion imposes selection on single mutants, we can only investigate the effect of segregation distortion on valley crossing with 
+the semi-deterministic crossing time estimates allowing selection on single mutants (Equations \ref{MSB} and \ref{T3}) and with the crossing probability estimates from standing variation (Equations \ref{PCrossNoRecomb} and \ref{PCrossRecomb}).
+
+Figure \ref{TimeFixDriveR} shows the crossing time as a function of the probability of recombination, and how segregation distortion affects this time.
+Simulations ($X$'s) well match the numerical solution (Equation \ref{SolveT}; dots) and the MSB approximation (Equation \ref{MSB}; solid curves in top panel) over the range of parameters tested.
+When valley crossing occurs before reaching MSB (bottom panel) a transition occurs between when mutation drives crossing (dashed line; Equation \ref{T2}) and when recombination does (solid curves; Equation \ref{T3}), here approximately $r\approx 10^{-4}$. 
+The largest effect of segregation distortion occurs when the crossing time is long, the scenario in which single-mutants must persist the longest before a successful double mutant appears.
+In addition, observe that as the probability of recombination, $r$, increases above a critical value such that $s_{22} < 0$, the double mutant is broken apart faster than its selective advantage and valley crossing takes longer [equations B21 and B25 in \citealp{Weissman2010} approximate the crossing times with no segregation distortion ($k=0$) when $s_{22} < 0$; see also \citealp{Lynch2010b,Altland2011}].
+
+INSERT FIGURE \ref{TimeFixDriveR} HERE
+
+Figure \ref{ProbFixDriveMut} shows the probability of crossing from standing variation.
+Again, segregation distortion has a large effect when mutation (top panel) and recombination (bottom panel) are rare, the conditions under which single mutants must persist the longest before a successful double mutant is formed.
+When crossing occurs by recombination our analytical approximation (Equation \ref{PCrossRecomb}) overestimates the probability of crossing (bottom panel), especially when the initial number of single mutants is small and therefore subject to strong stochasticity (results not shown). 
+This occurs because the assumption that the ratio of single mutant frequencies in these simulations remains roughly $c_n=1$ is violated, reducing the probability that double mutants are formed by recombination.
+
+INSERT FIGURE \ref{ProbFixDriveMut} HERE
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Cytonuclear inheritance}
+We next explore how fitness-valley crossing is affected by uniparental inheritance of one of the traits. 
+This might occur if, for example, there was reciprocal sign epistasis between cytoplasmic and nuclear loci.
+Without loss of generality we assume that the $\mathbf{B}$ trait is always inherited from the mother. 
+For simplicity we assume individuals are hermaphroditic. 
+Here we can use only those results that allow recombination (Equations \ref{MSB}, \ref{T3}, \ref{TRecomb}, and \ref{PCrossRecomb}), as cytoplasmic and nuclear elements are expected to be inherited independently (i.e., $r_{21}^{12}(22) + r_{12}^{21}(22)= 1/2$).
+
+One likely implication of uniparental transmission is asymmetric mutation probabilities.
+For instance, in animals the mitochondrial mutation rate is two orders of magnitude larger than typical nuclear rates \citep{Linnane1989}.
+Let $\mu$ be the mutation probability in the biparentally inherited $\mathbf{A}$ trait and $\nu$ be the mutation probability in the uniparentally inherited $\mathbf{B}$ trait, with $c_\mu=\nu/\mu$ the ratio of uniparental to biparental mutation probabilities. 
+The transmission probabilities are shown in Table \ref{Table:Cyto}.
+
+INSERT TABLE \ref{Table:Cyto} HERE
+
+The top panel of Figure \ref{TimeFixUni} shows the crossing time as a function of the mutation probability in the $\mathbf{B}$ locus, $\nu$.
+Increasing $\nu$ increases the rate at which single and double mutants are created, aiding valley crossing.
+The bottom panel of Figure \ref{TimeFixUni} shows the crossing time as a function of the ratio of the mutation probabilities at the two loci, $c_\mu$, while holding the average mutation probability, $(\mu + \nu)/2 = \mu(1+c_\mu)/2$, constant.
+When holding the average mutation probability constant the time to fixation is minimized when $\nu = \mu$ because single mutant types are then equally frequent, increasing the chances they mate with one another to produce a double mutant by recombination.
+As $c_\mu$ departs from one, the mutation rate at one of the loci becomes small, causing those single mutants to become rare.
+The highly stochastic nature of the rare single mutant frequencies causes our semi-deterministic (Equation \ref{T3}) and stochastic (Equation \ref{TRecomb}) approximations to underestimate the crossing time and, instead, the single mutants first reach mutation-selection balance (Equation \ref{MSB}; dashed gray curve). 
+
+INSERT FIGURE \ref{TimeFixUni} HERE
+
+Given that crossing occurs by recombination from standing variation (Equation \ref{PCrossRecomb}), asymmetric mutation rates have little effect given a particular starting population $(i_0,j_0)$.
+However, standing variation will also tend to vary in proportion to mutation rates, implying that uniparental inheritance will cause differences in the initial numbers of the two single mutants, which can have a large effect. 
+Let $c_\mu$ now also determine the ratio of the initial numbers of single mutants, $c_\mu=c_n=j_0/i_0$.
+Figure \ref{ProbFixUni} shows the probability of crossing from standing variation as a function of $c_\mu$. 
+When we hold $i_0$ and $\mu$ constant and increase $j_0$ and $\nu$ (grey curve), the probability of crossing increases with $c_\mu$ as there are then more single mutants segregating.
+When we instead hold the total initial number of single mutants ($i_0+j_0$) and the average mutation probability [$(\mu+\nu)/2$] constant (black curve), the probability of crossing is maximized at $c_\mu=1$ because the single mutants are then equally frequent and hence more likely to mate with one another and produce a double mutant through recombination.  
+
+INSERT FIGURE \ref{ProbFixUni} HERE
+
+%%%%%%%%%%%%%%%%%%%
+\subsubsection{Cultural inheritance}
+
+Finally, we remove Darwinian selection, such that transmission bias alone determines the dynamics, and interpret the model in a cultural context.
+For the sake of exposition we consider only one simplified case of cultural transmission.
+Let trait combinations with only one new trait ($A_2B_1$ and $A_1B_2$) be inherited relative to the previous combination ($A_1B_1$) with probability $q$.
+Let the new combination of cultural traits ($A_2B_2$) be inherited relative to the previous combination with probability $p$.
+We are most interested in the case 
+of a ``transmission valley", where the previous combination of traits is transmitted more effectively than mixed combinations of new and old ($q<1/2$), but the all-new combination spreads even more effectively than the previous combination ($p>1/2$).
+We assume that parental trait combinations can be broken up with probability $r$  and mutation occurs with probability $\mu$.
+The transmission probabilities are shown in Table \ref{Table:Cult}.
+
+INSERT TABLE \ref{Table:Cult} HERE
+
+Figure \ref{TimeFixCult} shows that the crossing time is substantially faster when the new combination of traits has a stronger transmission advantage ($T$ decreases with $p$; compare thick curve with thin).  
+Nevertheless, even combinations that are transmitted very effectively (thick curve) spread very slowly when their component traits are passed on poorly in the previous cultural background ($q<<1/2$).
+In particular, the crossing time increases most quickly as $q$ decreases from $1/2$, demonstrating that slight biases in the transmission of the new traits when arising within the previous cultural background have a strong influence on the spread of new combinations of cultural traits, effectively preventing establishment if $q<<1/2$.
+
+INSERT FIGURE \ref{TimeFixCult} HERE
+
+Figure \ref{ProbFixCult} shows the probability of crossing from standing variation.
+In this case, with such a large mutation rate, crossing can be more likely by mutation (Equation \ref{PCrossNoRecomb}) than by recombination (Equation \ref{PCrossRecomb}).
+Recombination has the added effect of breaking up the new combination of traits, reducing the probability of crossing.
+With a lower mutation rate crossing is most likely with moderate amounts of recombination (e.g., Figure \ref{TimeFixDriveR}). 
+Figure \ref{ProbFixCult} again shows that the transmission advantage of the new combination of traits ($p$; compare thick lines to thin) and slight biases in the transmission of new traits in the previous cultural background ($q\approx1/2$) greatly influence the probability that a new combination of cultural traits successfully spreads.
+ 
+INSERT FIGURE \ref{ProbFixCult} HERE
+
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%major findings
+Our results support the general consensus that, given reasonable population sizes and per locus per generation mutation rates, crossing a particular fitness valley by genetic drift is typically a slow and unlikely event \citep{Crow1965,Bengtsson1976,Lande1979,Hedrick1981,Walsh1982,Lande1985a,Michalakis1996,Phillips1996,Coyne1997}.
+For example, with a per locus per generation mutation probability of $\mu=10^{-8}$, a double mutant viability of $w_{22}=1.01$, recombination between the two loci with probability $r=0.01$, and a population size of $N=10^4$, the waiting time for a successful double mutant, in the best case scenario where single mutants are selectively neutral, is on the order of $10^7$ generations (Equation \ref{TRecomb}).
+As this is the typical age for living animal genera \citep{VanValen1973,Lande1979}, we should not expect to see this fitness valley forded. 
+Of course, with many potential fitness valleys across the genome, the chance that one of them is forded can become substantial.
+
+By broadening previous treatments to allow for non-Mendelian inheritance, we have shown that a small amount of segregation distortion can greatly impact the chances of fitness-valley crossing.
+Of course, segregation distortion has a large impact because it provides a second level of selection \citep{Sandler1957}, often acting like gametic selection \citep[but see][]{Hartl1970,Hartl1977}.
+When the $A_2$ and $B_2$ alleles are more likely to be passed down than the $A_1$ and $B_1$ alleles, respectively, in matings between single mutants and residents, the depth of the valley is effectively reduced and hence crossing is much more likely.
+For example, when single mutants have a relative viability of $w_{m}=0.95$, the mutation rate is $\mu=10^{-8}$, double mutants are weakly favoured ($w_{22}=1.01$), and we begin with one single mutant ($n_0=1$) in a population of size $N=10^4$, in the absence of recombination [$r_{21}^{12}(22)=0$] and segregation distortion ($k_{ij}=0$), the probability of crossing is on the order of $10^{-9}$ (Equation \ref{PCrossNoRecomb}).
+With a $5\%$ distortion in favour of $A_2$ and $B_2$ alleles ($k_{21}=k_{12}=0.05$) the single mutants are effectively neutral and the probability increases seven orders of magnitude to $10^{-2}$.
+And with a $10\%$ distortion the single mutants are selectively favoured and the double mutant fixes with probability $0.25$.
+
+Segregation distortion, in the form of meiotic drive, has often been implicated as a force that could help fix underdominant chromosomal rearrangements \citep{Sandler1957,Bengtsson1976,Hedrick1981,Walsh1982,Faria2010}.
+Chromosomal rearrangements, such as translocations and inversions, are often fixed in alternate forms in closely related species \citep{White1978,Coyne1989,Faria2010}.
+Because heterokaryotypes typically have severely reduced fertility \citep{Sandler1957,Lande1979}, such rearrangements are thought to promote rapid speciation \citep[stasipatric speciation;][but see \citealp{Faria2010,Kirkpatrick2010}]{White1978}.
+The trouble is explaining how such rearrangements originally increase in frequency when they are so strongly selected against when rare \citep{Navarro2003,Kirkpatrick2010}. 
+Meiotic drive provides one possible answer.
+Our results can be used to investigate valley crossing with chromosomal rearrangements by assuming $\mathbf{A}$ and $\mathbf{B}$ are homologous chromosomes, with $A_2$ and $B_2$ being the novel chromosomes, and $A_2B_1$ and $A_1B_2$ interchangeable. 
+For example, with free recombination [$r_{21}^{12}(22)=1/4$, $r_{11}^{22}(22)=1/4$], a 5\% viability reduction in heterokaryotypes ($w_{m}=0.95$), no meiotic drive [$\bar{b}_{11}^{m}(m)=1/2$], a very beneficial mutant homokaryotype ($w_{22}=2.5$), and a spontaneous chromosome mutation rate of $\mu=10^{-3}$ \citep{Lande1979}, when starting with one copy of each mutant chromosome ($i_0 = 1$, $c_n=1$) in a population of size $N=10^4$, Equation \eqref{PCrossRecomb} gives a $0.4\%$ chance of fixing the mutant homokaryotype.
+When the mutated chromosome has a 70\% chance of being passed down in matings with residents, a relatively weak amount of drive \citep{Sandler1957}, the chance of crossing increases two orders of magnitude, to nearly $75\%$. 
+
+Here we have shown that, for a given number of single mutants, the chance of crossing a valley by recombination is best when the two single mutant types are at equal frequencies.
+This is an important factor when the mutation rates in $\mathbf{A}$ and $\mathbf{B}$ are highly asymmetric.
+One instance where this asymmetry is likely is when one locus (say $\mathbf{B}$) is in the mitochondrial genome, and is passed down maternally, while the other (say $\mathbf{A}$) is in the nuclear genome, and is passed down biparentally.
+Mutation rates in the mitochondria can be orders of magnitude higher than in the nucleus \citep{Linnane1989}.
+With $r_{21}^{12}(22)=r/2=1/4$, $N=10^4$, $w_{22}=2$, $b_{11}^{11}(21)=\mu=10^{-6}$, and neutral single mutants, when the mutation rates in $\mathbf{A}$ and $\mathbf{B}$ are equal [$b_{11}^{11}(12)/b_{11}^{11}(21)=c_\mu=1$] the crossing time is $40,000$ generations.
+When the mutation rate in $\mathbf{B}$ is two orders of magnitude larger ($c_\mu=100$) the waiting time is reduced to $2,500$ generations.
+But when the average mutation rate $(1+c_\mu)b_{11}^{11}(21)/2$ is held constant, the asymmetrical mutation rates instead hinder crossing, increasing the crossing time to nearly $120,000$ generations.
+
+By expanding a mathematical model of fitness-valley crossing beyond symmetrical Mendelian inheritance we gain insight into transitions between alternate stable states in non-genetic systems, such as culture.
+As mentioned in the introduction, culture may often exhibit alternate stable states; here valley crossing corresponds to a shift between alternate combinations of cultural ideas or practices (e.g., the demographic transition; \citealp{Mulder1998}).
+The valley is a ``transmission valley", created by new cultural traits that are transmitted effectively in concert but poorly when arising individually within the previous cultural background.
+In this case our simplified example above demonstrates that, 
+given that the component pieces are not passed on too poorly in the previous cultural background, the probability that a new set of practices or ideas becomes pervasive in society is greatly improved by its transmission advantage over the previous set.
+Valley crossing might also be relevant in the context of gene-culture coevolution, where one trait is cultural and the other genetic.
+For instance, the ability to absorb lactose as an adult is largely genetically determined and is positively correlated with the cultural practice of dairy farming, reaching frequencies over 90\% in cultures with dairy farming but typically remaining less than 20\% in cultures without \citep{Feldman1996}.
+If, as seems reasonable, the ability to absorb lactose as an adult has a cost in the absence of dairy farming and the cultural practice of dairy farming has a cost when adults are unable to absorb lactose, then the transition from non-pastoralist non-absorbers to pastoralist absorbers may represent another example of fitness-valley crossing outside the purely genetic arena. 
+We have used our generalized model to begin to explore cultural transitions, 
+but it should be emphasized that we neglect oblique and horizontal transmission, common features of cultural evolution \citep{CavalliSforza1981} and likely components of the demographic transition \citep{Ihara2004}.
+Generalizing models of fitness-valley crossing further to include oblique and horizontal transmission would improve insight into cultural transitions.
+
+%%new significance
+We have incorporated transmission bias in a model of multi-locus fitness-valley crossing.
+This allows us to investigate fitness-valley crossing in new scenarios, such as in genetic systems with segregation distortion  and/or uniparental inheritance.
+Segregation distortion acts as a second level of selection and therefore can greatly help or hinder fitness-valley crossing, especially when crossing is otherwise unlikely.
+Uniparental inheritance will often imply asymmetric mutation rates, which in turn lead to unequal frequencies of single mutants, and therefore, all else being equal, a lower probability of fitness-valley crossing by recombination.
+However, uniparental-inherited cytoplasmic elements tend to have increased mutation rates, which helps crossing.
+Generalizing transmission also allows us to begin to extend the theory of valley crossing to non-genetic systems, such as culture. 
+Despite component traits being passed on poorly in the previous cultural background, we find that small advantages in the transmission of the new set of cultural traits will greatly facilitate a cultural transition.
+While crossing a deep fitness valley is difficult under Mendelian inheritance, it can be easier when Mendel is left behind.
+
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Acknowledgements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We thank Eva Kisdi, Stefan Geritz, Helene Weigang, and the labs of S.P.\ Otto, Michael Whitlock, Michael Doebeli, and Christoph Hauert for helpful discussions.
+We thank Mark Kirkpatrick for suggesting the simplicity of considering crossing times from mutation-selection balance.
+Funding provided by Natural Sciences and Engineering Research Council (Canada) Discovery (SPO) and CGS-D (MMO) grants.
+
+%\newpage
+\doublespacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{References}
+\bibliography{BIBTEX/extracted}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newpage
+%\appendix
+\begin{appendices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Dynamic single mutants}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{App:DM}
+\renewcommand{\theequation}{A\arabic{equation}}
+\setcounter{equation}{0} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\paragraph{Dynamic single mutants}
+
+Here we calculate the waiting time for a successful double mutant to arise, starting from a population that is composed entirely of residents.  
+While single mutants are far from mutation-selection balance, $| s_{ij} t | < 1 \; \forall \; i\neq j$, we can write $x_{22}$ as a function of $t$ by replacing $x_{ij}$ in Equation \eqref{xDMprime} with the appropriate $x_{ij}$ in Equation (\ref{xMn}).
+With rare mutation, rare single mutants, and weak selection on single mutants, the expected number of generations until a successful double mutant appears, $T$, solves
+\begin{align}\label{SolveT}
+\frac{1}{u_{22} N}  = &\;  \mu_{11}^{11}(22) \nonumber\\
+& + T \Big[  \mu_{11}^{11}(22) [1 - \mu_{11}^{11}(21)^* - \mu_{11}^{11}(12)^*] + \mu_{11}^{11}(21)^* \mu_{11}^{21}(22) + \mu_{11}^{11}(12)^* \mu_{11}^{12}(22) \nonumber\\
+& + \frac{1}{3} \mu_{11}^{11}(21)^* s_{21} \mu_{11}^{21}(22) + \frac{1}{3} \mu_{11}^{11}(12)^* s_{12} \mu_{11}^{12}(22) + \frac{1}{3} \mu_{11}^{11}(21)^* \mu_{11}^{11}(12)^* r_{21}^{12}(22) \Big] \nonumber\\
+& + T^2 \Big[ \mu_{11}^{11}(21)^* \mu_{11}^{21}(22) + \mu_{11}^{11}(12)^* \mu_{11}^{12}(22) + \mu_{11}^{11}(21)^* \mu_{11}^{11}(12)^* r_{21}^{12}(22) \nonumber\\
+& - \mu_{11}^{11}(22) [\mu_{11}^{11}(21)^* + \mu_{11}^{11}(12)^*] \Big] \nonumber\\
+& + T^3 \Big[ \frac{2}{3} \mu_{11}^{11}(21)^* \mu_{11}^{11}(12)^* r_{21}^{12}(22) + \frac{1}{3} \mu_{11}^{11}(21)^* s_{21} \mu_{11}^{21}(22) + \frac{1}{3} \mu_{11}^{11}(12)^* s_{12} \mu_{11}^{12}(22) \Big] \nonumber\\
+& + O(\epsilon^5).
+\end{align}
+The $O(\epsilon^5)$ terms disappear and the equation is exact when single mutants are neutral, $s_{ij}=0$.  
+Otherwise, with selection against single mutants, the higher order terms can only be ignored as long as the crossing time, $T$, is much smaller than the inverse of the selection coefficients, $s_{21}$ and $s_{12}$.
+Because Equation \eqref{SolveT} is a cubic in $T$, its solution is cumbersome (see supplementary \textit{Mathematica} file).
+Here we examine two scenarios which give more interpretable approximations for $T$.  
+
+Without selection on single mutants ($s_{21}=s_{12}=0$) and without recombination from single mutants to double mutants [$r_{21}^{12}(22) = 0$] the $T^3$ term in Equation \eqref{SolveT} vanishes.
+In addition, if the crossing time $T$ is long, the dominant term is the one proportional to $T^2$.
+Solving for $T$ from this term alone gives
+\begin{equation}\label{T2}
+T \approx \Big[u_{22} N \big[ \mu_{11}^{11}(21)^* \mu_{11}^{21}(22) + \mu_{11}^{11}(12)^* \mu_{11}^{12}(22) \big] \Big]^{-1/2},
+\end{equation}
+where we have ignored double mutants arising instantaneously [$\mu_{11}^{11}(22)=0$].
+Equation \eqref{T2} shows that the crossing time without selection on or recombination among single mutants is roughly proportional to $N^{-1/2}$ generations.
+The crossing time decreases with $N$ because increasing $N$ increases the per generation input  of mutations.
+Holding mutation input $\theta_{ij}^{kl}(mn)=N\mu_{ij}^{kl}(mn)$ constant, the crossing time becomes proportional to $N^{1/2}$. 
+When the single-mutation transmission probabilities are equal [$\mu_{11}^{11}(21)^* = \mu_{11}^{11}(12)^* = 2\mu_{11}^{21}(22) = 2\mu_{11}^{12}(22) = \mu$] and we calculate the first appearance of any double mutant (successful or not; $u_{22}=1$), the expected time until the first double mutant appears simplifies to the neutral genetic case without recombination, $T\approx 1/\sqrt{\mu^2N}$ \citep[equation 8 in][]{Christiansen1998}.
+Equation \eqref{T2} clarifies the role of the various, \textit{potentially different}, mutation probabilities $\mu_{11}^{ij}(kl)$ on the time until the first double mutant, while also allowing us to ignore double mutants that are lost.  
+
+%FIGURE \ref{TimeDet} HERE
+
+When there is recombination between single mutants to produce double mutants [$r_{21}^{12}(22)>0$] and the crossing time, $T$, is smaller than the inverse of the selection coefficients, $s_{12}$ and $s_{21}$, the dominant term in Equation \eqref{SolveT} is proportional to $T^3$.
+This term is positive when recombination is frequent relative to selection against single mutants. 
+Again, if the time $T$ is long we can use this term alone to approximate $T$, which gives 
+\begin{equation}\label{T3}
+T \approx \frac{3^{1/3}} {\Big[ u_{22} N \big[ \mu_{11}^{11}(21)^* \mu_{11}^{11}(12)^* r_{21}^{12}(22) + s_{21} \mu_{11}^{11}(21)^* \mu_{11}^{21}(22) + s_{12} \mu_{11}^{11}(12)^* \mu_{11}^{12}(22) \big] \Big]^{1/3}},
+\end{equation}
+where we have once again ignored the instantaneous production of double mutants.
+Notice that, for a given mutation input $\theta_{ij}^{kl}(mn)$, when there is recombination between single mutants, the crossing time is roughly proportional to $N^{1/3}$ generations (rather than $N^{1/2}$ generations without recombination), implying that recombination between single mutants tends to shorten the expected time until the first (successful or unsuccessful) double mutant arises.
+However, because recombination can also occur between residents and double mutants (reducing $u_{22}$) Equation \eqref{T3} shows that the waiting time until the first \textit{successful} double mutant is minimized at intermediate levels of recombination. 
+
+Equation \eqref{T3} reduces to $T\approx 1/\sqrt[3]{N r \mu^2/3}$ \citep[equation 9 in][]{Christiansen1998} when we ignore the weak selection against single mutants ($s_{ij}=0$), there is equal mutation probability at each locus [$\mu_{11}^{11}(21)^* = \mu_{11}^{11}(12)^*=\mu$], and we wait until the first double mutant appears, successful or not ($u_{22}=1$).
+Once again our analysis clarifies the role of the various, potentially different, mutation probabilities $\mu_{ij}^{kl}(mn)$ on the waiting time until the first successful double mutant. 
+Equation \eqref{T3} also allows (weak) selection on single mutants and incorporates transmission bias, which we explore more fully in the main text.
+
+Figure \ref{DetApproxsDelta} compares the approximations derived here (Equations \ref{T2} and \ref{T3}) with that derived in the text assuming mutation-selection balance is reached before crossing (Equation \ref{MSB}).
+The approximations given by Equations \eqref{T2} and \eqref{T3} break down as the depth of the valley ($\delta = -s_{21} = s_{12}$) increases such that the crossing time becomes long, $T>1/\delta$.
+
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Diffusion approximation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{App:Diffusion}
+\renewcommand{\theequation}{B\arabic{equation}}
+\setcounter{equation}{0} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Here we take the large population limit ($N \rightarrow \infty$), scale time such that one unit of time in the scaled diffusion process ($\tau \in \mathbb{Z}_{\geq 0}$) is $N^\alpha$ generations in the unscaled Markov process ($\triangle t =  \tau N^\alpha$) and define new frequency parameters $Y(\tau) = i_\tau / N^\beta$ and $Z(\tau) = j_\tau / N^\beta$, with $0<\alpha,\beta<1$.
+
+We are concerned with three quantities for each variable $\triangle Y$ and $\triangle Z$.
+The first is the infinitesimal mean
+\begin{equation}
+\mu_Y(y) = \lim_{N\rightarrow\infty} E[ \triangle Y | Y(\tau) = y = i/N^\beta ] = \lim_{N\rightarrow\infty} \frac{N^\alpha}{N^\beta} E[ \triangle i | i_t = i ].
+\end{equation}
+The second quantity is the infinitesimal variance
+\begin{equation}
+\sigma^2_Y(y) = \lim_{N\rightarrow\infty} E[ (\triangle Y)^2 | Y(\tau) = y = i/N^\beta ] = \lim_{N\rightarrow\infty} \frac{N^\alpha}{N^{2\beta}} E[ (\triangle i)^2 | i_t = i ].
+\end{equation}
+And the third quantity of interest is a higher ($n>2$) infinitesimal moment 
+\begin{equation}
+\lim_{N\rightarrow\infty} E[ (\triangle Y)^n | Y(\tau) = y = i/N^\beta ] = \lim_{N\rightarrow\infty} \frac{N^\alpha}{N^{n\beta}} E[ (\triangle i)^n | i_t = i ].
+\end{equation}
+We can similarly calculate $\mu_Z(z)$, $\sigma^2_Z(z)$, and a higher moment in $\triangle Z$.
+
+The final quantity of interest is the scaled ``killing rate"
+\begin{equation}\label{kyz}
+\kappa(y,z) = \lim_{N\rightarrow\infty} N^\alpha \tilde{P}_{ij}^H \approx \lim_{N\rightarrow\infty} N^\alpha Nx_{22}'u_{22},
+\end{equation}
+where the approximation assumes $x_{22}'u_{22}<<1$.
+
+For the Markov chain to converge to a diffusion process as $N \rightarrow \infty$ we require: 1) $\mu_Y(y)$ and $\mu_Z(z)$ to be finite; 2) $\sigma_Y^2(y)$, $\sigma_Z^2(z)$, and $\kappa (y,z)$ to be positive and finite; and 3) some higher moment (in both $\triangle Y$ and $\triangle Z$) to be equal to zero \citep{Karlin1981book}.
+We first take a hint from the genetic case \citep{Christiansen1998} and scale transmission probabilities as
+\begin{equation}\label{App:scaleb}
+   b_{ij}^{kl}(mn) = \left\{
+     \begin{array}{ll}
+       B_{ij}^{kl}(mn) & : m \in \{i,k\}, n \in \{j,l\} \\
+       \frac{B_{ij}^{kl}(mn)}{N^2} + O(1/N^3) & : m \not\in \{i,k\}, n \not\in \{j,l\} \\ 
+       \frac{B_{ij}^{kl}(mn)}{N} + O(1/N^2) & : \mathrm{otherwise} \\
+      \end{array}
+   \right.
+\end{equation} 
+In the genetic case this can be interpreted as making the probability of mutation proportional to the inverse of population size $\mu=B/N$. 
+Then, as $N\rightarrow\infty$ mutation probability decreases ($\mu\rightarrow0$), such that mutation input $B = N\mu$ is constant.
+This prevents the process from taking large jumps in frequency space, which violate the diffusion process \citep{Karlin1981book}.
+
+In order for the transmission parameters to satisfy the logical constraint $\sum_{m,n=1}^{2}b_{ij}^{kl}(mn)=1$ the diffusion also requires, as $N\rightarrow\infty$, that
+\begin{equation}\label{App:mut}
+B_{ij}^{ij}(ij) = 1 + O(1/N^{\beta}) 
+\end{equation}
+and
+\begin{equation}
+B_{ij}^{kl}(ij) + B_{ij}^{kl}(kl) = 1 + O(1/N^{\beta}) 
+\end{equation}
+when either $\{i\neq k,j=l\}$ or $\{i=k,j\neq l\}$.
+In words, the sum total mutation probability for parents $A_iB_j$ and $A_kB_l$ must be relatively small, at most on the order of $1/N^\beta$.
+
+Finally, our approximation requires weak selection, relative to $w_{11}=1$.
+In particular, total selection on single mutants must be weak, on the order of $1/N^\beta$,
+\begin{equation}\label{App:scalem}
+w_{ij}[b_{11}^{ij}(11)+b_{ij}^{11}(ij)] = 1 + S_{ij}/N^\beta + O(1/N^{2\beta})
+\end{equation}
+for $i\neq j$, where $S_{ij}$ is the scaled selection strength.
+And selection on double mutants must also be weak, such that
+\begin{equation}\label{App:scales22}
+s_{22} = S_{22}/N + O(1/N^2).
+\end{equation}
+
+With the above assumptions (Equations \ref{App:scaleb}-\ref{App:scales22}) the Markov chain converges to a diffusion process as $N\rightarrow\infty$ when
+\begin{equation}\label{App:scaleAlphaBeta}
+   \alpha = \beta = \left\{
+     \begin{array}{ll}
+       1/2 & : r_{12}^{21}(22) \leq O(1/N^{1/2})  \\
+       1/3  &: \mathrm{otherwise}
+      \end{array}
+   \right.
+\end{equation} 
+This scaling implies that if recombination between single mutants to make double mutants $r_{12}^{21}(22)$ is less likely that mutation (which is on the order of $N^{-1/2}$; Equation \ref{App:mut}),  then the time until the process is killed scales with $N^{1/2}$.
+Meanwhile, if recombination is more likely than mutation the killing time scales with $N^{1/3}$.
+These results align with our semi-deterministic analysis (Equations \ref{T2} and \ref{T3}).
+
+When $\alpha=\beta$ the infinitesimal variances are $\sigma_Y^2(y) = y$ and $\sigma_Z^2(z) = z$. 
+The infinitesimal means and the killing term depend on the probability of recombination.
+When recombination is rare the single mutants are expected to reach higher frequencies and therefore have a greater influence on the dynamics.
+To simplify, when recombination is rare [$r_{21}^{12}(22) \leq O(1/N^{1/2})$] we assume weak transmission bias for residents mating with single mutants [$b_{11}^{ij}(11)+b_{ij}^{11}(11)=1+O(1/N^\beta)$] and for single mutants mating with each other [$b_{ij}^{kl}(ij)+b_{kl}^{ij}(ij)=1+O(1/N^\beta)$].
+We further assume weak viability selection on single mutants, $w_{ij}=1-O(1/N^\beta)$, regardless of recombination.
+The infinitesimal mean is then always
+\begin{equation}\label{means}
+   \mu_Y(y) = B_{11}^{11}(21) - y \; S_{21}
+\end{equation} 
+and similarly for $\mu_Z(z)$.
+The first term, $B_{11}^{11}(21) \approx b_{11}^{11}(21) N$, describes mutation to single mutants in resident-resident matings and the second term, with $S_{21} \approx s_{21}N^\beta$, describes the removal of single mutants by selection (both through transmission bias when mating with the resident and survival). 
+
+The killing terms are
+\begin{equation}\label{kill}
+ \kappa (y,z) = \left\{
+     \begin{array}{ll}
+     u_{22} w_{22} \Big[ y [ B_{11}^{21}(22) + B_{21}^{11}(22) ] + z [ B_{11}^{12}(22) + B_{12}^{11}(22) ]&+ \; y \; z \; R_{21}^{12}(22) \Big] \\ &: r_{21}^{12}(22) \leq O(1/N^{1/2})  \\
+      u_{22} \; y \; z \; r_{21}^{12}(22)^* & : \mathrm{otherwise} \\
+      \end{array}
+   \right.
+\end{equation} 
+where $R_{21}^{12}(22) \approx r_{21}^{12}(22) N^{{1/2}}$ describes a (low) probability of recombination.
+The first line shows that the process can be killed by mutations in single mutants that mate with residents [$B_{11}^{ij}(22) + B_{ij}^{11}(22) \approx \big(b_{11}^{ij}(22) + b_{ij}^{11}(22)\big)N$] or by rare recombination between single mutants to produce double mutants $R_{21}^{12}(22)$.
+When recombination is more likely than $N^{-1/2}$ the process is essentially always killed by recombination $r_{21}^{12}(22)$ (second line in Equation \ref{kill}).
+
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Stochastic crossing times}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{App:StochasticTimes}
+\renewcommand{\theequation}{C\arabic{equation}}
+\setcounter{equation}{0} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Neutral single mutants without recombination}
+
+With no chance of recombination from single mutants to double mutants [$r_{21}^{12}(22) = 0$] we have scaling parameter $\beta=1/2$.
+Then, without selection on single mutants ($s_{21} = s_{12} = 0$) and with some mutational symmetry between the two loci [$\bar{b}_{11}^{21}(22) = \bar{b}_{11}^{12}(22) = \bar{b}_{11}^{m}(22) $], the single mutants are equivalent and we can concern ourselves with only their sum, $\xi = y + z$. 
+Letting $m$ be either single mutant type ($m=21$ or $12$), Equation \eqref{PDE} reduces to
+\begin{equation}\label{NoRecombDE}
+\frac{1}{2} \xi \frac{\mathrm{d}^2 \tilde{T}(\xi)}{\mathrm{d} \xi^2} + \Big[B_{11}^{11}(21) + B_{11}^{11}(12)\Big] \frac{\mathrm{d} \tilde{T}(\xi)}{\mathrm{d} \xi} - u_{22} \xi \; \Big[ B_{11}^{m}(22) + B_{m}^{11}(22) \Big] w_{22} \;\tilde{T}(\xi) = -1
+\end{equation}
+where $B_{ij}^{kl}(mn)=b_{ij}^{kl}(mn)N$.
+
+When there are an infinite number of single mutants a successful double mutant is produced immediately, giving one boundary condition $\lim_{\xi\rightarrow\infty}\tilde{T}(\xi)=0$.
+The second boundary condition is $\mathrm{d}\tilde{T}(0)/\mathrm{d}\xi = -[B_{11}^{11}(21) + B_{11}^{11}(12)]^{-1}$, which can be derived directly from Equation \eqref{NoRecombDE} by setting $\xi=0$ \citep[see appendix A in][for a more complete derivation]{Christiansen1998}.
+
+The solution to the boundary value problem, evaluated at $\xi=0$, corresponding to the expected number of generations until a successful double mutant arises when beginning with only residents, $T=N^{1/2} \tilde{T}(0)$, is then
+\begin{equation}\label{TNoRecomb}
+T = \frac{ N^{1/2} \Gamma \Big[ 1/2 \Big] \Gamma \Big[ B_{11}^{11}(21) + B_{11}^{11}(12) \Big] } { \Gamma \Big[1 + B_{11}^{11}(21) + B_{11}^{11}(12) \Big] \sqrt{u_{22} 2\big[ B_{11}^{m}(22) + B_{m}^{11}(22) \big] w_{22}} },
+\end{equation}
+where $\Gamma [\cdot]$ is the gamma function.
+Setting mutation probabilities equal [$B_{11}^{11}(21)=B_{11}^{11}(12)=2B_{11}^{m}(22)=2B_{m}^{11}(22)=\theta=N\mu$] reduces Equation \eqref{TNoRecomb} to the neutral genetic case \citep[equation 27 in][]{Christiansen1998} divided by $\sqrt{u_{22}w_{22}}$ because we census after selection and consider double mutant fixation.
+By separating the various mutational terms our analysis clarifies that, while the crossing time is inversely proportional to the mutation probability from residents to single mutants, it is inversely proportional to the \textit{square root} of mutation probabilities from single mutants to double mutants.
+The crossing time is therefore increased much more by a reduction in mutations from residents to single mutants than it is by a reduction in mutations from single mutants to double mutants.
+
+When mutations from residents to single mutants [$b_{11}^{11}(21)$ and $b_{11}^{11}(12)$] are rare,
+an approximation for the crossing time, in terms of our unscaled parameters, is
+\begin{equation}\label{TNoRecombApp}
+T \approx \frac{1}{N [b_{11}^{11}(21) + b_{11}^{11}(12)] \sqrt{u_{22}4\mu_{11}^{m}(22)^*}}.
+\end{equation}
+Increasing the mutational supply of single mutants [$N(b_{11}^{11}(21) + b_{11}^{11}(12))$] or the probability of mutation from single mutants to successful double mutants [$u_{22}\mu_{11}^{m}(m)^*$] decreases the amount of time we expect to wait before a successful double mutant arises.
+Holding mutation input, $\theta$, constant, Equation \eqref{TNoRecombApp} shows that the crossing time without recombination is roughly proportional to $N^{1/2}$ generations, aligning with the semi-deterministic analysis (Equation \ref{T2}) and indicating that, for a given mutational input, genetic drift increases the speed at which fitness valleys are crossed.  
+
+%FIGURE \ref{TimeNoRecombTheta} HERE
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Neutral single mutants with recombination}
+
+With recombination the scaling parameter is $\beta=1/3$.
+We can reduce and solve Equation \eqref{PDE} with recombination when the frequencies of single mutants remain proportional to one another, such that we need follow only $c_\mu \; y = z = \xi$, where $c_\mu$ is a constant. 
+This requires mutation input [$N b_{11}^{11}(21)$, $N b_{11}^{11}(12)$] to be large enough to make the dynamics of $y$ and $z$ relatively deterministic.
+We further assume no selection on single mutants ($s_{21} = s_{12} = 0$).
+We then have $c_\mu \; y = z$ for all time, $t$, when the ratio of mutation probabilities is $c_\mu$ [i.e., $c_\mu b_{11}^{11}(21) = b_{11}^{11}(12)$] and we begin with $c_\mu y(0) = z(0)$. 
+Equation \eqref{PDE} then collapses to
+\begin{equation}
+\frac{\xi}{2 (1 + c_\mu)} \frac{\mathrm{d}^2 \tilde{T}(\xi)}{\mathrm{d} \xi^2} + B_{11}^{11}(21) \frac{\mathrm{d} \tilde{T}(\xi)}{\mathrm{d} \xi} -  u_{22}c_\mu r_{21}^{12}(22)^* \; \xi^2 \; \tilde{T}(\xi) = -1.
+\end{equation}
+
+The boundary conditions are $\lim_{\xi\rightarrow\infty}\tilde{T}(\xi) = 0$ and $\mathrm{d}\tilde{T}(0)/\mathrm{d}\xi = -B_{11}^{11}(21)^{-1}$.  
+The solution to the boundary-value problem, evaluated at $\xi = 0$, in units of generations, $T = N^{1/3} \tilde{T}(0)$, is
+\begin{equation}\label{TRecomb}
+T = \frac{ 2^{5/3} \pi} { 3^{11/6} \Gamma \Big[ 2/3 \Big]} \frac{N^{1/3} (1+c_\mu) \Gamma \Big[ 2 (1+c_\mu) B_{11}^{11}(21) / 3 \Big] }{\Gamma \Big[ 2 [1 + (1 + c_\mu) B_{11}^{11}(21)] / 3 \Big] \sqrt[3]{ u_{22}c_\mu (1 + c_\mu) r_{21}^{12}(22)^*}}.
+\end{equation}
+Letting $c_\mu=1$, $B_{11}^{11}(21) = \theta = N \mu$, and $r_{21}^{12}(22) = r/2$ reduces Equation \eqref{TRecomb} to the neutral genetic case \citep[equation 30 in][]{Christiansen1998} divided by $\sqrt[3]{u_{22}w_{22}}$ because we census after selection and consider double mutant fixation.
+Our result extends the insight of \cite{Christiansen1998} by allowing the frequencies of single mutants to differ, $c_\mu\neq 1$.
+Holding average mutation input [$(1+c_\mu)Nb_{11}^{11}(21)/2$] constant, Equation \eqref{TRecomb} shows that the crossing time is minimized when there are equal numbers of the two single mutants ($c_\mu=1$) and increases as the asymmetry grows.
+This occurs because recombination is most effective in creating double mutants when the single mutants are equally frequent.
+
+Converting the full solution back in terms of our unscaled parameters
+and letting the mutation probability $b_{11}^{11}(21)$ be small, we have the approximation
+\begin{equation}\label{TRecombApp}
+T \approx \frac{ 2^{2/3} \pi }{3^{5/6} \Gamma \Big[ 2/3 \Big]^2} \frac{1}{N^{2/3} b_{11}^{11}(21) \sqrt[3]{u_{22}c_\mu (1+c_\mu) r_{21}^{12}(22)^*} }.
+\end{equation} 
+Holding mutation input [$Nb_{11}^{11}(21)$] constant, Equation \eqref{TRecombApp} shows that the crossing time is roughly proportional to $N^{1/3}$ generations, aligning with the semi-deterministic analysis (Equation \ref{T3}).
+
+%FIGURE \ref{TimeRecombThetaR} HERE
+
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Stochastic simulations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{App:Simulations}
+\renewcommand{\theequation}{D\arabic{equation}}
+\setcounter{equation}{0} 
+
+We performed stochastic simulations to verify our analytical and numerical results.
+Simulation code is supplied in the supplementary \textit{Mathematica} file.
+Briefly, we performed random multinomial sampling of genotypes with frequency parameters given by Equation \eqref{xprime} and transition probabilities defined in Tables \ref{Table:Drive}-\ref{Table:Cult}.
+Crossing time simulations ended on double mutant fixation and the generation in which this occurred was recorded as the crossing time.
+Crossing time was averaged over all trials ($10^3$ trials in Figure \ref{TimeFixDriveR}, $10^2$ trials in Figure \ref{TimeFixUni} and \ref{TimeFixCult}).
+Crossing probability simulations ended on resident or double mutant fixation and the genotype which fixed in each trial was recorded.
+The crossing probability was calculated as the fraction of trials in which the double mutant fixed ($10^3$ trials in Figure \ref{ProbFixDriveMut} and \ref{ProbFixUni}, $10^5$ trials in Figure \ref{ProbFixCult}).
+
+\end{appendices}
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%\newpage
+%\section{Figures and Tables}
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.75\linewidth]{IMAGES/TimeFixDriveRMSBSimsBW.eps}
+\includegraphics[width=0.75\linewidth]{IMAGES/TimeFixDriveRSimsBW.eps}
+\caption{
+Expected number of generations until a double mutant begins to fix, $T$, as a function of the probability of recombination, $r$.
+The dots show the full semi-deterministic solution (numerical solution to Equation \ref{SolveT}, including higher order terms, allowing both recombination and mutation to generate double mutants).
+The solid curves show the semi-deterministic results when (\textbf{top}) mutation-selection balance is first reached (Equation \ref{MSB}) and (\textbf{bottom}) mutation-selection balance is not reached and crossing can occur by recombination (Equation \ref{T3}).
+The dashed line gives the crossing time when crossing occurs by mutation only, before mutation selection balance is reached, and single mutants are selectively neutral (Equation \ref{T2}).
+The $X$'s are mean simulation results (Appendix \ref{App:Simulations}).
+The grayscale corresponds to (\textit{dark}) distortion favouring single mutants, $k = 10^{-4}$; (\textit{medium}) the Mendelian case, $k = 0$; and (\textit{light}) distortion favouring wild-type, $k = -10^{-4}$.
+Parameters: $\mu=5\times10^{-7}$, $N=10^6$, $w_{22}=1.05$, and (\textbf{top}) $w_{21}=w_{12}=1-10^{-3}$ and (\textbf{bottom}) $w_{21}=w_{12}=1-10^{-5}$. 
+}
+\label{TimeFixDriveR}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.75\linewidth]{IMAGES/ProbFixDriveMutSimsBW.eps}
+\includegraphics[width=0.75\linewidth]{IMAGES/ProbFixDriveRSimsBW.eps}
+\caption{
+The probability, $P=1-u$, of crossing the valley given an initial stock of single mutants (with no further mutations from resident-resident matings) as a function of the rate at which single mutants produce double mutants (\textbf{top}) without recombination (Equation \ref{PCrossNoRecomb}) and (\textbf{bottom}) by recombination only (Equation \ref{PCrossRecomb}).
+The $X$'s are simulation results (Appendix \ref{App:Simulations}).
+Parameters and grayscale as in Figure \ref{TimeFixDriveR} (bottom) with $i_0=j_0=1000$. 
+}
+\label{ProbFixDriveMut}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.75\linewidth]{IMAGES/TimeFixUniLogNuSimsBW.eps}
+\includegraphics[width=0.75\linewidth]{IMAGES/TimeFixUniLogU2SimsBW.eps}
+\caption{
+Expected number of generations until a double mutant begins to fix, $T$, as a function of (\textbf{top}) the mutation probability in locus $\mathbf{B}$, $\nu$, and (\textbf{bottom}) the relative mutability of the two loci, $c_\mu=\nu/\mu$.
+The top panel holds the mutation probability in locus $\mathbf{A}$ ($\mu=5\times 10^{-7}$) constant while the bottom panel holds the average mutation probability [$(\mu+\nu)/2=\mu(1+c_\mu)/2 = 5\times10^{-7}$] constant.
+The solid curves show the stochastic crossing time by recombination with neutral single mutants (Equation \ref{TRecomb}).
+The dashed curves show the semi-deterministic results when crossing occurs (\textit{black}) before (Equation \ref{T3}) and (\textit{gray}) after (Equation \ref{MSB}) mutation-selection balance is first reached.
+The dots show the full semi-deterministic solution (numerical solution to Equation \ref{SolveT}, including higher order terms, allowing both mutation and recombination to generate double mutants).
+The $X$'s are mean simulation results (Appendix \ref{App:Simulations}).
+Parameters as in Figure \ref{TimeFixDriveR} (bottom), except $w_{22}=2.01$, which ensures $s_{22}\geq0\;\forall \; c_\mu$.
+}
+\label{TimeFixUni}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{IMAGES/ProbFixUniS2Sims.eps}
+\caption{
+The probability, $P=1-u$, of crossing the valley given an initial stock of single mutants (with no further mutations from resident-resident matings) as a function of the ratio of the initial numbers of single mutants and mutation probabilities, $c_\mu=\nu/\mu=c_n=j_0/i_0$ (Equation \ref{PCrossRecomb}).
+The \textit{gray} curve holds the initial number of $A_2B_1$ ($i_0=100$) and the mutation probability in the $\mathbf{A}$ locus ($\mu=5\times10^{-7}$) constant and varies the initial number of $A_1B_2$ ($j_0$) and the mutation probability in the $\mathbf{B}$ locus ($\nu$).
+The \textit{black} curve holds the initial number of single mutants ($n_0=i_0+j_0=200$) and average mutation probability [$(\mu+\nu)/2 = 5\times10^{-7}$] constant.
+The $X$'s are simulation results (Appendix \ref{App:Simulations}).
+Other parameters as in Figure \ref{TimeFixUni}. 
+}
+\label{ProbFixUni}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{IMAGES/TimeFixCultLogPSimsBW.eps}
+\caption{
+Expected number of generations until the new combination of cultural traits ($A_2B_2$) begins to fix, $T$, as a function of the probability of inheritance, $q$, of the new traits singly ($A_2B_1$, $A_1B_2$) over the previous combination ($A_1B_1$).
+The curves show the estimate given mutation-selection balance is first reached (which assumes $A_2B_1$ and $A_1B_2$ are disfavoured, $q < 0.5$; Equation \ref{MSB}).
+The dots show the full semi-deterministic solution (numerical solution to Equation \ref{SolveT}, including higher order terms, allowing both recombination and mutation to generate double mutants).
+The $X$'s are mean simulation results (Appendix \ref{App:Simulations}).
+The transmission advantage for the new combination of cultural traits is either weak (thin curves, small dots: $p=0.51$) or strong (thick curves, large dots: $p=0.6$).
+Parameters: $N=10^{3}$, $\mu=10^{-3}$,  $r=0.01$, and $w_{21}=w_{12}=w_{22}=1$.
+}
+\label{TimeFixCult}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{IMAGES/ProbFixCultPSims.eps}
+\caption{
+The probability, $P=1-u$, that the new combination of cultural traits ($A_2B_2$) fixes given an initial number of $A_2B_1$ and $A_1B_2$ (with no further mutations from resident-resident matings) as a function of the probability of inheritance, $q$, of the new traits singly ($A_2B_1$, $A_1B_2$) over the previous combination ($A_1B_1$).
+The \textit{grey} curves show the probability of crossing in the absence of recombination ($r=0$; Equation \ref{PCrossNoRecomb}), with a strong (thick curves: $p=0.6$) or weak (thin curves: $p=0.51$) transmission advantage for the new combination of cultural traits.  
+The \textit{black} curves show the probability of crossing by recombination only ($r = 0.01$; Equation \ref{PCrossRecomb}).
+The $X$'s are simulation results (Appendix \ref{App:Simulations}).
+With such a large mutation probability, crossing can be more likely without recombination, which has the added effect of breaking apart the new combination.
+Parameters as in Figure \ref{TimeFixCult} with $i_0+j_0=20$ and $c=1$.
+}
+\label{ProbFixCult}
+\end{figure}
+
+\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{figure}{0} 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\linewidth]{IMAGES/DetApproxsDeltaBW.eps}
+\caption{
+Expected number of generations until a double mutant begins to fix, $T$, as a function of recombination, $r$, given (\textit{gray}) mutation-selection balance is first reached (Equation \ref{MSB}) or mutation-selection balance is not reached and (\textit{black, solid}) crossing can occur by recombination (Equation \ref{T3}) or (\textit{black, dashed}) crossing occurs by mutation only and $-s_{21}=-s_{12}=\delta=0$ (Equation \ref{T2}).
+The dots show the full semi-deterministic solution (numerical solution to Equation \ref{SolveT}, including higher order terms, allowing both recombination and mutation to generate double mutants).
+The mutation-selection balance estimate (\textit{gray}) performs better than the dynamic estimates (\textit{black}) when $\delta\; T > 1$, and vice-versa.
+Parameters: symmetrical, Mendelian inheritance with $N=10^5$, $s_{22}=0.05$, and $\mu=5\times 10^{-7}$ (see supplementary \textit{Mathematica} file).
+}
+\label{DetApproxsDelta}
+\end{figure}
+
+\begin{table}[t]
+\caption{Parameters used throughout text}
+\label{Parameters}
+%\centering
+\begin{tabular}{ll}
+\hline
+Symbol & Description \\
+\hline
+$x_{ij}$ & frequency of $A_iB_j$ in the current generation \\
+$x_{ij}'$ & expected frequency of $A_iB_j$ in the next generation \\
+$w_{ij}$ & viability of $A_iB_j$ relative to viability of $A_1B_1$\\
+$V$ & normalizing factor \\
+$N$ & number of individuals in the population \\
+$t$ & time, in units of generations \\
+$b_{ij}^{kl}(mn)$ & probability $A_iB_j$ mother and $A_kB_l$ father produce $A_mB_n$ offspring \\
+\multirow{2}{*} {$\bar{b}_{ij}^{kl}(mn)^*$} & average probability of surviving $A_mB_n$ offspring from  $A_iB_j$ x $A_kB_l$ mating,\\
+& $\frac{1}{2} w_{mn} [b_{ij}^{kl}(mn) + b_{kl}^{ij}(mn)]$ \\
+$\mu_{ij}^{kl}(mn)^*$ & probability of surviving \textit{mutant} offspring, $\bar{b}_{ij}^{kl}(mn)^*$, $m\not\in\{i,k\}$, $n\not\in\{j,l\}$\\
+\multirow{2}{*} {$r_{ij}^{kl}(mn)^*$} &  probability of surviving \textit{recombinant} offspring, $\bar{b}_{ij}^{kl}(mn)^*$, $m\in\{i,k\}$, $n\in\{j,l\}$,\\ 
+& $mn\not\in\{ij,kl\}$ \\
+\multirow{2}{*} {$\bar{b}_{ij}^{kl}(mn)$} & average transmission probability before selection, $\bar{b}_{ij}^{kl}(mn)^*/w_{mn}$ \\
+& [similarly for $\mu_{ij}^{kl}(mn)$ and $r_{ij}^{kl}(mn)$]\\
+$s_{ij}$ & selection on $A_iB_j$ in a resident population, $2\bar{b}_{11}^{ij}(ij)^*-1$\\ $T$ & generations until first successful double mutant arises \\
+$u_{22}$ & probability that a double mutant begins a lineage that will fix \\
+$i_t$ & number of $A_2B_1$ individuals in generation $t$ (similarly for $A_1B_2$,  $j_t$)\\
+$X(t)$ & numbers of single mutants in generation $t$ assuming no double mutants, $(i_t,j_t)$ \\
+$\triangle i$ & change in number of $A_2B_1$ individuals, $i_{t+1}-i_t$ (similarly for $A_1B_2$, $\triangle j=j_{t+1}-j_t$)\\
+$\alpha$, $\beta$ & scaling parameters in diffusion process\\
+$\tau$ & scaled unit of time, $t/N^\alpha$ \\
+$Y(\tau)$ & scaled frequency of $A_2B_1$, $i_\tau/N^\beta$ (similarly for $A_1B_2$, $Z(\tau)=j_\tau/N^\beta$) \\
+$\mu_Y(y)$ & first moment of $\triangle Y = Y(\tau+1) - Y(\tau)$ given $Y(\tau) = y = i/N^\beta$ (similarly for $Z$)\\
+$\sigma_Y^2(y)$ & second moment of $\triangle Y$ given $Y(\tau) = y$ (similarly for $Z$) \\
+$\kappa (y,z)$ & rate diffusion killed by successful double mutants given $Y(0)=y, Z(0)=z$\\
+$B_{ij}^{kl}(mn)$ & scaled transmission probability, $b_{ij}^{kl}(mn)N^\beta$ \\
+$R_{21}^{12}(22)$ & scaled (rare) recombination from single mutants to double mutants, $r_{21}^{12}(22)N^{1/2}$\\
+$S_{ij}$ & scaled selection on $A_iB_j$ in population of residents,  $s_{ij}N^\beta$\\
+$\tilde{T}(y,z)$ & scaled time until first successful double mutant given $Y(0)=y, Z(0)=z$, $TN^\alpha$ \\
+$m$ & index for single mutant types when equivalent (e.g., $s_m=s_{21}=s_{12}$) \\
+$c_\mu$ & mutation rate at locus $\mathbf{B}$ relative to locus $\mathbf{A}$, $\nu/\mu$\\
+$c_n$ & initial number of $A_1B_2$ individuals, relative to $A_2B_1$, $j_0/i_0$ \\
+$\xi$ & scaled frequency of single mutants ($y+z$ or $c_i \; y=z$, depending on assumptions) \\
+$u(y,z)$ & probability no successful double mutant appears given $Y(0)=y, Z(0)=z$ \\
+$n_0$ & initial number of single mutants, $i_0+j_0$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{sidewaystable}[t]
+\caption{
+Transmission probabilities, $b_{ij}^{kl}(mn)$, with segregation distortion (autosomal killing).
+Recombination occurs with probability $r$, followed by autosomal killing of strength $0\leq k\leq 1$, and mutation with probability $\mu$.
+When $k>0$ the killing alleles are the mutant alleles ($A_2$ and $B_2$) and when $k<0$ the killing alleles are the resident alleles ($A_1$ and $B_1$).
+}
+\label{Table:Drive}
+\centering
+\begin{tabular}{ll | cccc}
+\hline
+\multicolumn{2}{c}{Parents} & \multicolumn{4}{c}{Offspring} \\
+Mother & Father & $A_1B_1$ & $A_2B_1$ & $A_1B_2$ & $A_2B_2$ \\
+\hline
+$A_1B_1$ & $A_1B_1$ & 
+$(1-\mu)^2$ & $\mu(1-\mu)$ & $\mu(1-\mu)$ & $\mu^2$ \\
+$A_1B_1$ & $A_2B_1$ & 
+$\frac{1-k}{2}(1-\mu)^2$ & $\frac{1+k}{2}(1-\mu)$ & $\frac{1-k}{2}\mu(1-\mu)$ & $\frac{1+k}{2}\mu+\frac{1-k}{2}\mu^2$ \\
+$A_1B_1$ & $A_1B_2$ &
+$\frac{1-k}{2}(1-\mu)^2$ & $\frac{1+k}{2}(1-\mu)$ & $\frac{1-k}{2}\mu(1-\mu)$ & $\frac{1+k}{2}\mu+\frac{1-k}{2}\mu^2$ \\
+$A_1B_1$ & $A_2B_2$ & 
+$(1-r)\frac{1-k}{2}(1-\mu)^2$ & $(1-r)\frac{1-k}{2}\mu(1-\mu)+\frac{r}{2}$ & $(1-r)\frac{1-k}{2}\mu(1-\mu)+\frac{r}{2}$ & $(1-r)\frac{1+k}{2}+(1-r)\frac{1-k}{2}\mu^2$ \\ 
+$A_2B_1$ & $A_1B_1$ & 
+$\frac{1-k}{2}(1-\mu)^2$ & $\frac{1+k}{2}(1-\mu)$ & $\frac{1-k}{2}\mu(1-\mu)$ & $\frac{1+k}{2}\mu+\frac{1-k}{2}\mu^2$ \\
+$A_2B_1$ & $A_2B_1$ & 
+$0$ & $1-\mu$ & $0$ & $\mu$ \\
+$A_2B_1$ & $A_1B_2$ & 
+$r\frac{1-k}{2}$ & $\frac{1-r}{2}(1-\mu)$ & $\frac{1-r}{2}(1-\mu)$ & $r\frac{1+k}{2}$ \\
+$A_2B_1$ & $A_2B_2$ & 
+$0$ & $\frac{1-\mu}{2}$ & $0$ & $\frac{1+\mu}{2}$ \\
+$A_1B_2$ & $A_1B_1$ & 
+$\frac{1-k}{2}(1-\mu)^2$ & $\frac{1+k}{2}(1-\mu)$ & $\frac{1-k}{2}\mu(1-\mu)$ & $\frac{1+k}{2}\mu+\frac{1-k}{2}\mu^2$ \\
+$A_1B_2$ & $A_2B_1$ & 
+$r\frac{1-k}{2}$ & $\frac{1-r}{2}(1-\mu)$ & $\frac{1-r}{2}(1-\mu)$ & $r\frac{1+k}{2}$ \\
+$A_1B_2$ & $A_1B_2$ & 
+$0$ & $0$ & $1-\mu$ & $\mu$ \\
+$A_1B_2$ & $A_2B_2$ & 
+$0$ & $0$ & $\frac{1-\mu}{2}$ & $\frac{1+\mu}{2}$ \\
+$A_2B_2$ & $A_1B_1$ & 
+$(1-r)\frac{1-k}{2}(1-\mu)^2$ & $(1-r)\frac{1-k}{2}\mu(1-\mu)+\frac{r}{2}$ & $(1-r)\frac{1-k}{2}\mu(1-\mu)+\frac{r}{2}$ & $(1-r)\frac{1+k}{2}+(1-r)\frac{1-k}{2}\mu^2$ \\ 
+$A_2B_2$ & $A_2B_1$ & 
+$0$ & $\frac{1-\mu}{2}$ & $0$ & $\frac{1+\mu}{2}$ \\
+$A_2B_2$ & $A_1B_2$ & 
+$0$ & $0$ & $\frac{1-\mu}{2}$ & $\frac{1+\mu}{2}$ \\
+$A_2B_2$ & $A_2B_2$ & 
+$1$ & $0$ & $0$ & $0$ \\ 
+\hline
+\end{tabular}
+\end{sidewaystable}
+
+\begin{table}[t]
+\caption{
+Transmission probabilities, $b_{ij}^{kl}(mn)$, with cytonuclear inheritance. 
+The $\mathbf{A}$ locus is biparentally inherited with $\mu$ the mutation probability from $A_1$ to $A_2$. 
+The $\mathbf{B}$ locus is uniparentally inherited with $\nu$ the mutation probability from $B_1$ to $B_2$.
+}
+\label{Table:Cyto}
+\centering
+\begin{tabular}{ll | cccc}
+\hline
+\multicolumn{2}{c}{Parents} & \multicolumn{4}{c}{Offspring} \\
+Mother & Father & $A_1B_1$ & $A_2B_1$ & $A_1B_2$ & $A_2B_2$ \\
+\hline
+$A_1B_1$ & $A_1B_1$ & 
+$(1-\mu)(1-\nu)$ & $\mu(1-\nu)$ & $(1-\mu)\nu$ & $\mu \nu$ \\
+$A_1B_1$ & $A_2B_1$ & 
+$\frac{1-\mu}{2}(1-\nu)$ & $\frac{1+\mu}{2}(1-\nu)$ & $\frac{1-\mu}{2}\nu$ & $\frac{1+\mu}{2}\nu$ \\
+$A_1B_1$ & $A_1B_2$ &
+$(1-\mu)(1-\nu)$ & $\mu(1-\nu)$ & $(1-\mu)\nu$ & $\mu\nu$ \\
+$A_1B_1$ & $A_2B_2$ & 
+$\frac{1-\mu}{2}(1-\nu)$ & $\frac{1+\mu}{2}(1-\nu)$ & $\frac{1-\mu}{2}\nu$ & $\frac{1+\mu}{2}\nu$ \\ 
+$A_2B_1$ & $A_1B_1$ & 
+$\frac{1-\mu}{2}(1-\nu)$ & $\frac{1+\mu}{2}(1-\nu)$ & $\frac{1-\mu}{2}\nu$ & $\frac{1+\mu}{2}\nu$ \\
+$A_2B_1$ & $A_2B_1$ & 
+$0$ & $1-\nu$ & $0$ & $\nu$ \\
+$A_2B_1$ & $A_1B_2$ & 
+$\frac{1-\mu}{2}(1-\nu)$ & $\frac{1+\mu}{2}(1-\nu)$ & $\frac{1-\mu}{2}\nu$ & $\frac{1+\mu}{2}\nu$ \\
+$A_2B_1$ & $A_2B_2$ & 
+$0$ & $1-\nu$ & $0$ & $\nu$ \\ 	
+$A_1B_2$ & $A_1B_1$ & 
+$0$ & $0$ & $1-\mu$ & $\mu$ \\
+$A_1B_2$ & $A_2B_1$ & 
+$0$ & $0$ & $\frac{1-\mu}{2}$ & $\frac{1+\mu}{2}$ \\
+$A_1B_2$ & $A_1B_2$ & 
+$0$ & $0$ & $1-\mu$ & $\mu$ \\
+$A_1B_2$ & $A_2B_2$ & 
+$0$ & $0$ & $\frac{1-\mu}{2}$ & $\frac{1+\mu}{2}$ \\
+$A_2B_2$ & $A_1B_1$ & 
+$0$ & $0$ & $\frac{1-\mu}{2}$ & $\frac{1+\mu}{2}$ \\ 
+$A_2B_2$ & $A_2B_1$ & 
+$0$ & $0$ & $0$ & $1$ \\ 
+$A_2B_2$ & $A_1B_2$ & 
+$0$ & $0$ & $\frac{1-\mu}{2}$ & $\frac{1+\mu}{2}$ \\ 
+$A_2B_2$ & $A_2B_2$ & 
+$0$ & $0$ & $0$ & $1$ \\ 
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{sidewaystable}[t]
+\caption{
+Transmission probabilities, $b_{ij}^{kl}(mn)$, with cultural inheritance.
+Parental trait combinations are broken up with probability $r$, followed by biased transmission ($A_2B_1$ and $A_1B_2$ are passed down over $A_1B_1$ with probability $q$, $A_2B_2$ is passed down over $A_1B_1$ with probability $p$), and mutation with probability $\mu$.
+}
+\label{Table:Cult}
+\centering
+\begin{tabular}{ll | cccc}
+\hline
+\multicolumn{2}{c}{Parents} & \multicolumn{4}{c}{Offspring} \\
+Mother & Father & $A_1B_1$ & $A_2B_1$ & $A_1B_2$ & $A_2B_2$ \\
+\hline
+$A_1B_1$ & $A_1B_1$ & 
+$(1-\mu)^2$ & $\mu(1-\mu)$ & $\mu(1-\mu)$ & $\mu^2$ \\
+$A_1B_1$ & $A_2B_1$ & 
+$(1-q)(1-\mu)^2$ & $(1-q)\mu(1-\mu)+q(1-\mu)$ & $(1-q)\mu(1-\mu)$ & $(1-q)\mu^2+q\mu$ \\
+$A_1B_1$ & $A_1B_2$ &
+$(1-q)(1-\mu)^2$ & $(1-q)\mu(1-\mu)$ & $(1-q)\mu(1-\mu)+q(1-\mu)$ & $(1-q)\mu^2+q\mu$ \\
+$A_1B_1$ & $A_2B_2$ & 
+$(1-r)(1-p)(1-\mu)^2$ & $(1-r)(1-p)\mu(1-\mu)+\frac{r}{2}(1-\mu)$ & $(1-r)(1-p)\mu(1-\mu)+\frac{r}{2}(1-\mu)$ & $(1-r)[(1-p)\mu^2+p]+r\mu$ \\ 
+$A_2B_1$ & $A_1B_1$ & 
+$(1-q)(1-\mu)^2$ & $(1-q)\mu(1-\mu)+q(1-\mu)$ & $(1-q)\mu(1-\mu)$ & $(1-q)\mu^2+q\mu$ \\
+$A_2B_1$ & $A_2B_1$ & 
+$0$ & $1-\mu$ & $0$ & $\mu$ \\
+$A_2B_1$ & $A_1B_2$ & 
+$r(1-p)(1-\mu)^2$ & $\frac{1-r}{2}(1-\mu)+r(1-p)\mu(1-\mu)$ & $\frac{1-r}{2}(1-\mu)+r(1-p)\mu(1-\mu)$ & $(1-r)\mu+r[p+(1-p)\mu^2]$ \\
+$A_2B_1$ & $A_2B_2$ & 
+$0$ & $(\frac{1}{2}-p+q)(1-\mu)$ & $0$ & $(\frac{1}{2}-p+q)\mu+\frac{1}{2}-p+q$ \\
+$A_1B_2$ & $A_1B_1$ & 
+$(1-q)(1-\mu)^2$ & $(1-q)\mu(1-\mu)$ & $(1-q)\mu(1-\mu)+q(1-\mu)$ & $(1-q)\mu^2+q\mu$ \\
+$A_1B_2$ & $A_2B_1$ & 
+$r(1-p)(1-\mu)^2$ & $\frac{1-r}{2}(1-\mu)+r(1-p)\mu(1-\mu)$ & $\frac{1-r}{2}(1-\mu)+r(1-p)\mu(1-\mu)$ & $(1-r)\mu+r[p+(1-p)\mu^2]$ \\
+$A_1B_2$ & $A_1B_2$ & 
+$0$ & $0$ & $1-\mu$ & $\mu$ \\
+$A_1B_2$ & $A_2B_2$ & 
+$0$ & $0$ & $(\frac{1}{2}-p+q)(1-\mu)$ & $(\frac{1}{2}-p+q)\mu+\frac{1}{2}-p+q$ \\
+$A_2B_2$ & $A_1B_1$ & 
+$(1-r)(1-p)(1-\mu)^2$ & $(1-r)(1-p)\mu(1-\mu)+\frac{r}{2}(1-\mu)$ & $(1-r)(1-p)\mu(1-\mu)+\frac{r}{2}(1-\mu)$ & $(1-r)[(1-p)\mu^2+p]+r\mu$ \\ 
+$A_2B_2$ & $A_2B_1$ & 
+$0$ & $(\frac{1}{2}-p+q)(1-\mu)$ & $0$ & $(\frac{1}{2}-p+q)\mu+\frac{1}{2}-p+q$ \\
+$A_2B_2$ & $A_1B_2$ & 
+$0$ & $0$ & $(\frac{1}{2}-p+q)(1-\mu)$ & $(\frac{1}{2}-p+q)\mu+\frac{1}{2}-p+q$ \\
+$A_2B_2$ & $A_2B_2$ & 
+$0$ & $0$ & $0$ & $1$ \\
+\hline
+\end{tabular}
+\end{sidewaystable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

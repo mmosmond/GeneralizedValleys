@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Model and Results}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Semi-deterministic analysis}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Single mutant dynamics}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Waiting time for first successful double mutant}{subsection.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Stochastic analysis}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Markov process}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Crossing time with neutral single mutants}{subsection.2.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Probability of crossing from standing variation}{subsection.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Three scenarios}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Segregation distortion}{subsection.2.3}% 11
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Cytonuclear inheritance}{subsection.2.3}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Cultural inheritance}{subsection.2.3}% 13
+\BOOKMARK [1][-]{section.3}{Discussion}{}% 14
+\BOOKMARK [1][-]{section.4}{Acknowledgements}{}% 15
+\BOOKMARK [1][-]{section.5}{References}{}% 16
+\BOOKMARK [1][-]{Appendix.1.A}{Dynamic single mutants}{}% 17
+\BOOKMARK [1][-]{Appendix.1.B}{Diffusion approximation}{}% 18
+\BOOKMARK [1][-]{Appendix.1.C}{Stochastic crossing times}{}% 19
+\BOOKMARK [1][-]{Appendix.1.D}{Stochastic simulations}{}% 20
